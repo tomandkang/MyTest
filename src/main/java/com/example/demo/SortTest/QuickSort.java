@@ -7,6 +7,9 @@ public class QuickSort {
         int[] arr={1,2,6,8,19,7,9,12,45,65,32,24,17};
         quick(arr,0,arr.length-1);
         System.out.println(Arrays.toString(arr));
+
+        System.out.println("第一次提交");
+
     }
 
 
