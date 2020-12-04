@@ -1,12 +1,16 @@
 package com.example.demo.SortTest;
 
+import com.example.demo.AnnotationTest.MyField;
+import com.example.demo.ObjectTest.Father;
+
+import java.lang.reflect.Field;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 public class HeapSort {
-
-    private static final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
 
         public static void heap(int[] arr,int i,int length){
@@ -30,21 +34,4 @@ public class HeapSort {
             arr[i]=temp;
         }
 
-    public static void main(String[] args) {
-            getZeroTime(0);
-            getZeroTime(1);
-
-        System.out.println(simpleDateFormat.format(getZeroTime(0)));
-        System.out.println(simpleDateFormat.format(getZeroTime(1)));
-    }
-
-    public static Date getZeroTime(int days){
-
-        Calendar calendar = Calendar.getInstance();
-        calendar.add(Calendar.DATE, days);
-        calendar.set(Calendar.HOUR_OF_DAY, 0);
-        calendar.set(Calendar.MINUTE, 0);
-        calendar.set(Calendar.SECOND, 0);
-        return calendar.getTime();
-    }
 }

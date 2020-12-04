@@ -8,14 +8,6 @@ public class QuickSort {
         quick(arr,0,arr.length-1);
         System.out.println(Arrays.toString(arr));
 
-        System.out.println("第一次提交");
-
-        System.out.println("第二次提交");
-
-        System.out.println("第三次提交");
-
-        System.out.println("你爹");
-
     }
 
 
