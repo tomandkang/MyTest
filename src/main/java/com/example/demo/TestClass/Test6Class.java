@@ -1,6 +1,12 @@
 package com.example.demo.TestClass;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.sun.org.apache.bcel.internal.generic.NEW;
+
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -11,17 +17,18 @@ import java.util.List;
 public class Test6Class {
 
     public static void main(String[] args) {
-        List<String> list = new ArrayList<>();
-        list.add("1");
-        list.add("2");
-        list.add("3");
-        list.add("4");
-        list.add("5");
-        for (int i=0;i<3;i++){
-            list.remove(0);
-        }
-        list.forEach(x->
-                System.out.println(x)
-        );
+
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("22","22");
+        System.out.println();
     }
+
+
+    public static Date addMinute(Date date, int amount){
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        return calendar.getTime();
+    }
+
+
 }

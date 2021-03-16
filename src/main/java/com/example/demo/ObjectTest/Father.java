@@ -1,28 +1,21 @@
 package com.example.demo.ObjectTest;
 
 
+import java.util.Date;
+
 
 public class Father {
 
 
-    private Integer age;
+
 
     private String name;
 
-    public Father(){
-    }
+    private Date date;
 
-    public Father(Integer age, String name) {
-        this.age = age;
+    public Father(String name, Date date) {
         this.name = name;
-    }
-
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
+        this.date = date;
     }
 
     public String getName() {
@@ -31,5 +24,13 @@ public class Father {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 }

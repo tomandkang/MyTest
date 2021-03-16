@@ -1,6 +1,6 @@
 package com.example.demo.ObjectTest;
 
-public class Son extends Father{
+public class Son{
 
 
     private Integer age;
