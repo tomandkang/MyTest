@@ -11,14 +11,14 @@ import org.springframework.context.annotation.Configuration;
  * @Author: chen kangwen
  * @Date: 2021/2/26 8:58
  **/
-@Configuration
+
 public class FilterConfig {
 
 
         @Autowired
         private MyOwnFilter myOwnFilter;
 
-        @Bean
+
         public FilterRegistrationBean init(){
             FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean();
             filterRegistrationBean.setFilter(myOwnFilter);

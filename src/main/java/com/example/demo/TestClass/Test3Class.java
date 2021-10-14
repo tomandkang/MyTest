@@ -1,17 +1,11 @@
 package com.example.demo.TestClass;
 
 
-
-
-
 import com.example.demo.ObjectTest.Father;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.lang.reflect.Field;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 /**
  * @Description:
@@ -28,9 +22,19 @@ public class Test3Class {
 
     public static void main(String[] args) {
 
-        String str="very well";
-        String s = removeHtmlTag(str);
-        System.out.println(s);
+        try {
+            Father father = new Father();
+            father.setAge(20);
+            father.setName("");
+            Field age = new Father().getClass().getDeclaredField("name");
+            age.setAccessible(true);
+            Object o = age.get(father);
+            System.out.println(o+"");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
     }
 
 

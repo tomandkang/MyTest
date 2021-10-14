@@ -21,6 +21,9 @@ public class HtmlUtils {
      * @author LongJin
      */
     public static String delHTMLTag(String htmlStr) {
+
+
+
         Pattern p_w = Pattern.compile(regEx_w, Pattern.CASE_INSENSITIVE);
         Matcher m_w = p_w.matcher(htmlStr);
         htmlStr = m_w.replaceAll(""); // 过滤script标签

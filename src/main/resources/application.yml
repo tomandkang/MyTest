@@ -1,0 +1,67 @@
+server:
+  port: 9090
+  servlet:
+    context-path: /
+
+spring:
+  redis:
+    host: 10.123.42.236
+    port: 6379
+
+
+#mybatis的相关配置
+mybatis:
+  #mapper配置文件
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.zhg.demo.mybatis.entity
+  #开启驼峰命名
+  configuration:
+    map-underscore-to-camel-case: true
+
+
+# 配置真实数据源
+dataSources:
+  # 配置第 1 个数据源
+  ds0: !!com.zaxxer.hikari.HikariDataSource
+    driverClassName: com.mysql.jdbc.Driver
+    jdbcUrl: jdbc:mysql://localhost:3306/ds0
+    username: root
+    password:
+  # 配置第 2 个数据源
+    #ds1: !!com.zaxxer.hikari.HikariDataSource
+    #driverClassName: com.mysql.jdbc.Driver
+    # jdbcUrl: jdbc:mysql://localhost:3306/ds1
+    #username: root
+    # password:
+
+rules:
+  # 配置分片规则
+  - !SHARDING
+    tables:
+      # 配置 t_order 表规则
+      t_order:
+        actualDataNodes: ds${0..1}.t_order${0..1}
+        # 配置分库策略
+          #databaseStrategy:
+          # standard:
+          # shardingColumn: user_id
+        #shardingAlgorithmName: database_inline
+        # 配置分表策略
+        tableStrategy:
+          standard:
+            shardingColumn: order_id
+            shardingAlgorithmName: table_inline
+      #t_order_item:
+      # 省略配置 t_order_item 表规则...
+      # ...
+
+    # 配置分片算法
+    shardingAlgorithms:
+      database_inline:
+        type: INLINE
+        props:
+          algorithm-expression: ds${user_id % 2}
+      table_inline:
+        type: INLINE
+        props:
+          algorithm-expression: t_order_${order_id % 2}

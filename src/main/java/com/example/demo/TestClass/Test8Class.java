@@ -1,14 +1,15 @@
 package com.example.demo.TestClass;
 
 
-import com.itextpdf.text.pdf.BaseFont;
-import org.xhtmlrenderer.pdf.ITextFontResolver;
-import org.xhtmlrenderer.pdf.ITextRenderer;
+import com.example.demo.ObjectTest.Father;
+import com.example.demo.SpringContextUtils.SpringContextUtil;
+import com.sun.org.apache.bcel.internal.generic.NEW;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
 /**
  * @Description:
@@ -18,50 +19,38 @@ import java.io.OutputStream;
 public class Test8Class {
 
 
-    public static void main(String[] args) throws Exception {
-        standardHTML(new File("D:\\test\\123.html"));
-        htmlToPdf(new File("D:\\test\\123.html"),"D:\\test\\sjsjsj.pdf");
-    }
+    public static void main(String[] args) {
 
+        try {
+            testz51();
 
-
-
-        /**
-         * html转换成PDF
-         * @param htmlFile html文件
-         * @param pdfPath  pdf路径
-         * @throws Exception 异常
-         */
-        public static void htmlToPdf(File htmlFile, String pdfPath) throws Exception {
-
-            OutputStream os = new FileOutputStream(pdfPath);
-            ITextRenderer iTextRenderer = new ITextRenderer();
-            iTextRenderer.setDocument(htmlFile);
-
-            //解决中文编码
-            ITextFontResolver fontResolver = iTextRenderer.getFontResolver();
-            if ("linux".equals(getCurrentOperationSystem())) {
-                fontResolver.addFont("/usr/share/fonts/chiness/simsun.ttc", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
-            } else {
-                fontResolver.addFont("c:/Windows/Fonts/simsun.ttc", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
-            }
-
-            iTextRenderer.layout();
-            iTextRenderer.createPDF(os);
-            os.flush();
-            os.close();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-
-        private static String getCurrentOperationSystem() {
-            String os = System.getProperty("os.name").toLowerCase();
-            return os;
-        }
-
-    private static void standardHTML(File f) throws IOException {
 
     }
 
+    public static void testz51()throws Exception{
+        Date startDate = new Date(1621872000000L);
+        Date endDate = new Date(1622476799000L);
+        List<String> columnNum = getColumnNum(startDate, endDate);
+        columnNum.forEach(e->{
+            System.out.println(e);
+        });
 
+    }
 
+    private static List<String> getColumnNum(Date startDate, Date endDate) {
+        List<String> list = new ArrayList<>();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd");
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(startDate);
+        while(calendar.getTime().before(endDate)){
+            list.add(dateFormat.format(calendar.getTime()));
+            calendar.add(Calendar.DAY_OF_MONTH, 1);
+
+        }
+        return list;
+    }
 
 }

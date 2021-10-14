@@ -15,7 +15,7 @@ import java.io.IOException;
  * @Author: chen kangwen
  * @Date: 2021/2/6 17:00
  **/
-@Component
+
 public class MyOwnFilter implements Filter {
 
 
