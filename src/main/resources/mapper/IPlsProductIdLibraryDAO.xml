@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yks.pls.dao.IPlsProductIdLibraryDAO">
+    <resultMap id="BaseResultMap" type="com.yks.pls.model.PlsProductIdLibrary">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="platform" jdbcType="TINYINT" property="platform"/>
+        <result column="type" jdbcType="TINYINT" property="type"/>
+        <result column="product_library_id" jdbcType="VARCHAR" property="productLibraryId"/>
+        <result column="use_status" jdbcType="TINYINT" property="useStatus"/>
+        <result column="seller_sku" jdbcType="VARCHAR" property="sellerSku"/>
+        <result column="merchant_token" jdbcType="VARCHAR" property="merchantToken"/>
+        <result column="creater" jdbcType="VARCHAR" property="creater"/>
+        <result column="create_date" jdbcType="TIMESTAMP" property="createDate"/>
+        <result column="modifier" jdbcType="VARCHAR" property="modifier"/>
+        <result column="modify_date" jdbcType="TIMESTAMP" property="modifyDate"/>
+        <result column="shop_account" jdbcType="VARCHAR" property="shopAccount"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, platform, type, product_library_id, use_status, creater, create_date, modifier, modify_date, merchant_token, seller_sku
+    </sql>
+
+    <select id="getPlsProductIdLibraryById" resultType="com.yks.pls.model.PlsProductIdLibrary">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM pls_product_id_library
+        WHERE id = #{id,jdbcType=BIGINT} AND use_status = 0
+    </select>
+
+    <delete id="deleteById">
+        delete
+        from pls_product_id_library
+        where id = #{id,jdbcType=BIGINT}
+          AND use_status = 0
+    </delete>
+
+    <delete id="clearAllEanByMerchantTokens">
+        DELETE from pls_product_id_library
+        where `merchant_token` in
+        <foreach collection="list" item="item" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+        and 1 > use_status and `seller_sku` IS NULL
+    </delete>
+
+    <select id="getProductIdLibraryCount" parameterType="com.yks.pls.dto.PlsProductIdLibraryDTO"
+            resultType="java.lang.Long">
+        SELECT count(*) FROM pls_product_id_library
+        <where>
+            1 = 1
+            <if test="null != platform and platform != 0">
+                AND platform=#{platform}
+            </if>
+            <if test="useStatus != null">
+                and use_status = #{useStatus}
+            </if>
+            <if test="isOccupy != null">
+                <if test="isOccupy == 0">
+                    and merchant_token is null
+                </if>
+                <if test="isOccupy == 1">
+                    and merchant_token is not null
+                </if>
+            </if>
+            <if test="null != type and type != 0">
+                AND type=#{type}
+            </if>
+            <if test="productLibraryId != null">
+                AND product_library_id = #{productLibraryId}
+            </if>
+            <if test="merchantTokenList != null and merchantTokenList.size() > 0">
+                and merchant_token in
+                <foreach collection="merchantTokenList" separator="," open="(" close=")" item="merchantToken" index="index">
+                    #{merchantToken}
+                </foreach>
+            </if>
+            <if test="productLibraryIds != null">
+                AND product_library_id IN
+                <foreach collection="productLibraryIds" index="index" item="productLibraryId" open="(" separator="," close=")">
+                    #{productLibraryId}
+                </foreach>
+            </if>
+        </where>
+    </select>
+
+    <select id="getProductIdLibraryList" parameterType="com.yks.pls.dto.PlsProductIdLibraryDTO"
+            resultType="com.yks.pls.vo.PlsProductIdLibraryVO">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM pls_product_id_library
+        <where>
+            id != 0
+            <if test="null != platform and platform != 0">
+                AND platform=#{platform}
+            </if>
+            <if test="useStatus != null">
+                AND use_status=#{useStatus}
+            </if>
+            <if test="null != type and type != 0">
+                AND type=#{type}
+            </if>
+            <if test="isOccupy != null">
+                <if test="isOccupy == 0">
+                    and merchant_token is null
+                </if>
+                <if test="isOccupy == 1">
+                    and merchant_token is not null
+                </if>
+            </if>
+            <if test="merchantTokenList != null and merchantTokenList.size() > 0">
+                and merchant_token in
+                <foreach collection="merchantTokenList" separator="," open="(" close=")" item="merchantToken" index="index">
+                    #{merchantToken}
+                </foreach>
+            </if>
+            <if test="productLibraryId != null">
+                AND product_library_id = #{productLibraryId}
+            </if>
+            <if test="productLibraryIds != null">
+                AND product_library_id IN
+                <foreach collection="productLibraryIds" index="index" item="productLibraryId" open="(" separator=","
+                         close=")">
+                    #{productLibraryId}
+                </foreach>
+            </if>
+        </where>
+        ORDER BY use_status ASC,create_date DESC
+    </select>
+
+    <select id="queryUseStatusById" resultType="java.lang.Integer">
+        SELECT use_status
+        FROM pls_product_id_library
+        WHERE id = #{id}
+    </select>
+
+    <insert id="batchInsert" parameterType="com.yks.pls.dto.PlsProductIdLibraryDTO" useGeneratedKeys="true"
+            keyProperty="id">
+        INSERT INTO pls_product_id_library(
+        platform,
+        type,
+        product_library_id,
+        creater
+        )VALUES
+        <foreach collection="list" item="item" index="index" separator=",">
+            (
+            #{item.platform},
+            #{item.type},
+            #{item.productLibraryId},
+            #{item.creater}
+            )
+        </foreach>
+    </insert>
+
+    <insert id="tempBatchInsert">
+        INSERT INTO pls_product_id_library(
+        platform,
+        type,
+        product_library_id,
+        seller_sku,
+        merchant_token,
+        use_status,
+        creater,
+        modifier
+        )VALUES
+        <foreach collection="list" item="item" index="index" separator=",">
+            (
+            1,
+            1,
+            #{item.libraryId},
+            #{item.sellerSku},
+            #{item.merchantToken},
+            3,
+            'system',
+            'system'
+            )
+        </foreach>
+    </insert>
+
+    <!-- use_status: 使用状态（0-未使用   1-已使用） -->
+    <select id="getProductIdByPlatformAndType" resultType="java.lang.Long">
+        SELECT product_library_id
+        FROM pls_product_id_library
+        WHERE platform = #{platform}
+          AND `type` = #{productIdTypeCode}
+          AND use_status = 0
+        LIMIT 1
+    </select>
+
+    <select id="getProductIdByPlatformAndTypeAndCount" resultType="java.lang.String">
+        SELECT product_library_id
+        FROM pls_product_id_library
+        WHERE platform = #{platformCode}
+          AND `type` = #{productIdTypeCode}
+          AND use_status = 0
+        LIMIT #{count}
+    </select>
+
+    <update id="updateProductIdUseStatus">
+        <foreach collection="productIdList" item="item" index="index" separator=";">
+            UPDATE pls_product_id_library
+            SET use_status = #{useStatus}
+            WHERE platform = #{platformCode}
+            AND `type` = #{productIdTypeCode}
+            AND product_library_id = #{item}
+        </foreach>
+    </update>
+
+    <update id="setShopAccountLimitOneHundred">
+        update pls_product_id_library
+        set merchant_token = #{merchantToken}
+        where product_library_id in
+        (select m.product_library_id from
+        (select <include refid="Base_Column_List"/>
+        from pls_product_id_library
+        where platform = 1
+        and `type` = 1
+        and merchant_token is null
+        and use_status = 0
+        ORDER BY product_library_id
+        limit #{start}, #{range}
+        ) m
+        )
+    </update>
+
+    <update id="updateSellerSkuWithCondition">
+        <foreach collection="productIdLibraryList" item="library" index="index" separator=";">
+            update pls_product_id_library
+            set seller_sku = #{library.sellerSku},
+            use_status = #{library.useStatus}
+            where id = #{library.id}
+        </foreach>
+    </update>
+
+    <update id="batchUpdateStatus">
+        <foreach collection="list" item="condition" separator=";" index="index">
+            update pls_product_id_library
+            set use_status = #{condition.status}
+            where merchant_token = #{condition.merchantToken} and seller_sku = #{condition.sellerSku}
+            order by modify_date desc
+            limit 1
+        </foreach>
+    </update>
+
+    <update id="tempBatchUpdate">
+        <foreach collection="list" item="library" index="index" separator=";">
+            update pls_product_id_library
+            set seller_sku = #{library.sellerSku}, merchant_token = #{library.merchantToken},
+            use_status = 3
+            where product_library_id = #{library.libraryId}
+        </foreach>
+    </update>
+
+    <select id="getProductIdLibraryListBatch" resultType="com.yks.pls.dto.PlsProductIdLibraryDTO">
+        SELECT platform,type,product_library_id,shop_account
+        FROM pls_product_id_library WHERE (platform,type,product_library_id) IN
+        <foreach collection="list" open="(" close=")" separator="," item="item" index="index">
+            (#{item.platform},#{item.type},#{item.productLibraryId})
+        </foreach>
+    </select>
+
+    <select id="countEanNum" resultType="java.lang.Integer">
+        select count(1)
+        from pls_product_id_library
+        where platform = #{platform}
+          and type = #{type}
+          and use_status = #{status}
+    </select>
+
+    <select id="getProductIdWithCondition" resultType="com.yks.pls.model.PlsProductIdLibrary">
+        SELECT product_library_id, seller_sku
+        FROM pls_product_id_library
+        WHERE platform = #{platform}
+        AND `type` = #{productType}
+        and merchant_token = #{merchantToken}
+        and use_status != 2
+        and seller_sku in
+        <foreach collection="sellerSkuList" item="sellerSku" separator="," open="(" close=")">
+            #{sellerSku}
+        </foreach>
+    </select>
+
+    <select id="countUnUsedEanNum" resultType="java.lang.Integer">
+        select count(1) from pls_product_id_library where merchant_token = #{merchantToken} and use_status = 0 and seller_sku is null and shop_account is null
+    </select>
+
+    <select id="getLibraryWithCondition" resultType="com.yks.pls.model.PlsProductIdLibrary">
+        select
+        <include refid="Base_Column_List"/>
+        from pls_product_id_library
+        where platform = #{platform}
+        AND `type` = #{productType}
+        and merchant_token = #{merchantToken}
+        and seller_sku is null
+        and use_status = 0
+        order by product_library_id
+        limit #{size}
+    </select>
+
+    <select id="countUnusedEanWithMerchantToken" resultType="java.lang.Integer">
+        select count(1) from pls_product_id_library
+        where platform = 1
+          and `type` = 1
+          and merchant_token = #{merchantToken}
+          and seller_sku is null
+          and use_status = 0
+    </select>
+
+    <select id="selectWithCondition" resultType="com.yks.pls.amazon.dto.UpdateLibraryDTO">
+        select
+        <include refid="Base_Column_List"/>
+        from pls_product_id_library
+        where platform = 1 and `type` = 1
+        and use_status = 3
+        and (seller_sku, merchant_token) in
+        <foreach collection="list" separator="," open="(" close=")" item="condition">
+            (#{condition.sellerSku}, #{condition.merchantToken})
+        </foreach>
+    </select>
+
+    <select id="getAllMerchantToken" resultType="java.lang.String">
+        select merchant_token
+        from pls_product_id_library
+        where merchant_token is not null
+        group by merchant_token
+    </select>
+
+    <select id="tempGetAllAlreadyLibraryId" resultType="com.yks.pls.amazon.dto.TempInsertDTO">
+        select * from gly_sku_temp
+    </select>
+
+    <select id="tempSelectWithCondition" resultType="com.yks.pls.amazon.dto.TempInsertDTO">
+        select seller_sku as sellerSku, merchant_token as merchantToken, product_library_id as libraryId from pls_product_id_library
+        where product_library_id in
+        <foreach collection="list" separator="," open="(" close=")" item="condition">
+            #{condition.libraryId}
+        </foreach>
+    </select>
+
+
+    <insert id="batchInsertTempInsertDTO">
+        INSERT INTO gly_sku_temp(
+        shop_account,
+        site_code,
+        sku
+        )VALUES
+        <foreach collection="list" item="item" index="index" separator=",">
+            (
+            #{item.shopAccount},
+            #{item.siteCode},
+            #{item.sku}
+            )
+        </foreach>
+    </insert>
+</mapper>

@@ -1,7 +1,5 @@
-package com.example.demo.TestClass;
+package com.example.demo.commom.testClass;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 import lombok.Data;
 
 /**
