@@ -1,4 +1,4 @@
-package com.example.demo.HttpRequestTest;
+package com.example.demo.commom.httpRequestTest;
 
 
 import org.apache.http.HttpEntity;

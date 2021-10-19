@@ -1,6 +1,4 @@
-package com.example.demo.MyFilter;
-
-import org.springframework.stereotype.Component;
+package com.example.demo.commom.myFilter;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;

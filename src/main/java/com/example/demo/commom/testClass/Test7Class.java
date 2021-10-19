@@ -1,10 +1,9 @@
-package com.example.demo.TestClass;
+package com.example.demo.commom.testClass;
 
 import com.alibaba.fastjson.JSON;
-import com.example.demo.ObjectTest.Father;
+import com.example.demo.commom.ObjectTest.Father;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**

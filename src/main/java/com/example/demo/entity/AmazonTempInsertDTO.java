@@ -1,4 +1,4 @@
-package com.yks.pls.amazon.dto;
+package com.example.demo.entity;
 
 import lombok.Data;
 
@@ -10,6 +10,8 @@ import lombok.Data;
 @Data
 public class AmazonTempInsertDTO {
 
+    private Integer userId;
+    private Integer orderId;
     private String shopAccount;
     private String siteCode;
     private String sku;

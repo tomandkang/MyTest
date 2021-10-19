@@ -8,7 +8,7 @@ import lombok.Data;
  * @Date: 2021/6/18 17:57
  **/
 @Data
-public class Test11 {
+public class Test11Class {
 
     String a;
     String b;

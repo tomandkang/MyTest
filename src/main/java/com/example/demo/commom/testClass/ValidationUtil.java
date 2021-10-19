@@ -1,4 +1,4 @@
-package com.example.demo.TestClass;
+package com.example.demo.commom.testClass;
 
 import org.hibernate.validator.HibernateValidator;
 

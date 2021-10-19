@@ -1,8 +1,8 @@
-package com.example.demo.ObjectTest;
+package com.example.demo.commom.ObjectTest;
 
 
-import com.example.demo.TestClass.AccountGroup;
-import com.example.demo.TestClass.DateValidator;
+import com.example.demo.commom.testClass.AccountGroup;
+import com.example.demo.commom.testClass.DateValidator;
 import org.hibernate.validator.constraints.Range;
 
 import javax.validation.constraints.NotEmpty;

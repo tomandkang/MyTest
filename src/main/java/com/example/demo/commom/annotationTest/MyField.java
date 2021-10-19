@@ -1,4 +1,4 @@
-package com.example.demo.AnnotationTest;
+package com.example.demo.commom.annotationTest;
 
 
 import java.lang.annotation.Documented;

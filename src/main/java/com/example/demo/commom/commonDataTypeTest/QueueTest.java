@@ -1,4 +1,4 @@
-package com.example.demo.CommonDataTypeTest;
+package com.example.demo.commom.commonDataTypeTest;
 
 import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.ThreadPoolExecutor;

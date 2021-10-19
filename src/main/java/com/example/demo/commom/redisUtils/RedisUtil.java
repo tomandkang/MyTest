@@ -1,4 +1,4 @@
-package com.example.demo.RedisUtils;
+package com.example.demo.commom.redisUtils;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -9,9 +9,9 @@ import redis.clients.jedis.JedisPool;
 @Component
 public class RedisUtil {
 
-    @Value("${redis.host}")
+    @Value("${spring.redis.host}")
     private String host;
-    @Value("${redis.port}")
+    @Value("${spring.redis.port}")
     private Integer port;
 
     @Bean

@@ -1,4 +1,4 @@
-package com.example.demo.ClassesLoadTest;
+package com.example.demo.commom.classesLoadTest;
 
 public class StaticClassLoad extends NomalClassLoad{
     

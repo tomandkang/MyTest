@@ -1,6 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.ObjectTest.Father;
+import com.example.demo.commom.ObjectTest.Father;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;

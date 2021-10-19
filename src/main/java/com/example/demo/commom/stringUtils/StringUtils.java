@@ -1,4 +1,4 @@
-package com.example.demo.StringUtils;
+package com.example.demo.commom.stringUtils;
 
 import java.io.UnsupportedEncodingException;
 

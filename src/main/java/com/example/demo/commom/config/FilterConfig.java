@@ -1,11 +1,8 @@
-package com.example.demo.config;
+package com.example.demo.commom.config;
 
-import com.example.demo.MyFilter.MyOwnFilter;
+import com.example.demo.commom.myFilter.MyOwnFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-
 /**
  * @Description:
  * @Author: chen kangwen
@@ -24,6 +21,8 @@ public class FilterConfig {
             filterRegistrationBean.setFilter(myOwnFilter);
             filterRegistrationBean.setName("myOwnFilter");
             filterRegistrationBean.addUrlPatterns("/*");
+
+
             return filterRegistrationBean;
         }
 

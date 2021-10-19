@@ -1,9 +1,5 @@
-package com.example.demo.TestClass;
+package com.example.demo.commom.testClass;
 
-
-import com.example.demo.ObjectTest.Father;
-import com.example.demo.SpringContextUtils.SpringContextUtil;
-import com.sun.org.apache.bcel.internal.generic.NEW;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

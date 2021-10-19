@@ -1,11 +1,7 @@
-package com.example.demo.TestClass;
-
-import com.alibaba.fastjson.JSON;
+package com.example.demo.commom.testClass;
 
 import java.lang.reflect.Method;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Random;
 import java.util.Set;
 

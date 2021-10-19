@@ -1,7 +1,7 @@
-package com.example.demo.TestClass;
+package com.example.demo.commom.testClass;
 
 
-import com.example.demo.ObjectTest.Father;
+import com.example.demo.commom.ObjectTest.Father;
 
 import java.lang.reflect.Field;
 import java.util.regex.Matcher;
