@@ -9,12 +9,12 @@ import redis.clients.jedis.JedisPool;
 @Component
 public class RedisUtil {
 
-    @Value("${spring.redis.host}")
+    //@Value("${spring.redis.host}")
     private String host;
-    @Value("${spring.redis.port}")
+    //@Value("${spring.redis.port}")
     private Integer port;
 
-    @Bean
+  //  @Bean
     public Jedis getJedis(){
         JedisPool jedisPool = new JedisPool(host, port);
         //从连接池中获得连接

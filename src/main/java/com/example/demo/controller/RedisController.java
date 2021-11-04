@@ -18,7 +18,7 @@ import java.util.concurrent.Executor;
 @RequestMapping(value="/test")
 public class RedisController {
 
-    @Autowired
+ //   @Autowired
     private Jedis jedis;
 
     @Autowired
