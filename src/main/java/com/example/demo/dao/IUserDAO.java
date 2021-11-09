@@ -1,7 +1,7 @@
 package com.example.demo.dao;
 
 
-import com.example.demo.entity.AmazonTempInsertDTO;
+import com.example.demo.entity.UserDTO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -13,9 +13,9 @@ import java.util.List;
  * @version: 2019/07/18 14:55
  */
 @Mapper
-public interface IPlsProductIdLibraryDAO {
+public interface IUserDAO {
 
 
-    void batchInsertTempInsertDTO(@Param("list") List<AmazonTempInsertDTO> tempInsertDTOS);
+    void batchInsert(@Param("list") List<UserDTO> list);
 
 }

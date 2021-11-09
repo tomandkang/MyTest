@@ -1,7 +1,7 @@
 package com.example.demo;
 
-import com.example.demo.dao.IPlsProductIdLibraryDAO;
-import com.example.demo.entity.AmazonTempInsertDTO;
+import com.example.demo.dao.IUserDAO;
+import com.example.demo.entity.UserDTO;
 import org.junit.jupiter.api.Test;
 
 import javax.annotation.Resource;
@@ -15,27 +15,16 @@ import java.util.Arrays;
 public class MySelfTest extends DemoApplicationTests {
 
     @Resource
-    IPlsProductIdLibraryDAO iPlsProductIdLibraryDAO;
+    IUserDAO iUserDAO;
 
 
     @Test
     public void test() {
-
-        AmazonTempInsertDTO amazonTempInsertDTO = new AmazonTempInsertDTO();
-        amazonTempInsertDTO.setUserId(1);
-        amazonTempInsertDTO.setOrderId(12);
-        amazonTempInsertDTO.setShopAccount("ckw");
-        amazonTempInsertDTO.setSiteCode("ckw");
-        amazonTempInsertDTO.setSku("ckw");
-
-        AmazonTempInsertDTO amazonTempInsertDTO1 = new AmazonTempInsertDTO();
-        amazonTempInsertDTO1.setUserId(2);
-        amazonTempInsertDTO1.setOrderId(91);
-        amazonTempInsertDTO1.setShopAccount("ckw");
-        amazonTempInsertDTO1.setSiteCode("ckw");
-        amazonTempInsertDTO1.setSku("ckw");
-
-        iPlsProductIdLibraryDAO.batchInsertTempInsertDTO( Arrays.asList(amazonTempInsertDTO, amazonTempInsertDTO1));
+        UserDTO userDTO = new UserDTO();
+        userDTO.setId(1);
+        userDTO.setOrderId(3);
+        userDTO.setName("hehe");
+        iUserDAO.batchInsert( Arrays.asList(userDTO));
     }
 
     @Test

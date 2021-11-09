@@ -8,11 +8,9 @@ import lombok.Data;
  * @Date: 2021/10/7 11:15
  **/
 @Data
-public class AmazonTempInsertDTO {
+public class UserDTO {
 
-    private Integer userId;
+    private Integer id;
     private Integer orderId;
-    private String shopAccount;
-    private String siteCode;
-    private String sku;
+    private String name;
 }

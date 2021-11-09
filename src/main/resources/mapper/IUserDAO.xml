@@ -1,24 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.demo.dao.IPlsProductIdLibraryDAO">
+<mapper namespace="com.example.demo.dao.IUserDAO">
 
 
-    <insert id="batchInsertTempInsertDTO">
-        INSERT INTO gly_sku_temp
+    <insert id="batchInsert">
+        insert into user
         (
-        user_id,
+        id,
         order_id,
-        shop_account,
-        site_code,
-        sku
+        name
         )VALUES
         <foreach collection="list" item="item" index="index" separator=",">
             (
-            #{item.userId},
+            #{item.id},
             #{item.orderId},
-            #{item.shopAccount},
-            #{item.siteCode},
-            #{item.sku}
+            #{item.name}
             )
         </foreach>
     </insert>
