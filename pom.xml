@@ -98,6 +98,13 @@
             <version>4.0.0-RC1</version>
         </dependency>
 
+        <!-- druid -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>1.1.9</version>
+        </dependency>
+
     </dependencies>
 
     <build>

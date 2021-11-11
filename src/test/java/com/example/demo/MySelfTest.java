@@ -21,10 +21,10 @@ public class MySelfTest extends DemoApplicationTests {
     @Test
     public void test() {
         UserDTO userDTO = new UserDTO();
-        userDTO.setId(1);
+        userDTO.setUserId(6);
         userDTO.setOrderId(3);
         userDTO.setName("hehe");
-        iUserDAO.batchInsert( Arrays.asList(userDTO));
+        iUserDAO.batchInsert(Arrays.asList(userDTO));
     }
 
     @Test
