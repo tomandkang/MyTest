@@ -10,7 +10,7 @@ import java.util.Collection;
  * @Author: chen kangwen
  * @Date: 2021/11/10 21:10
  **/
-public class MyPreciseShardingAlgorithm implements PreciseShardingAlgorithm<Long> {
+public class MyPreciseTableShardingAlgorithm implements PreciseShardingAlgorithm<Long> {
 
     @Override
     public String doSharding(Collection<String> availableTargetNames, PreciseShardingValue<Long> shardingValue) {
