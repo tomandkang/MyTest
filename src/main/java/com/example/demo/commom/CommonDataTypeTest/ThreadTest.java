@@ -1,4 +1,4 @@
-package com.example.demo.CommonDataTypeTest;
+package com.example.demo.commom.CommonDataTypeTest;
 
 public class ThreadTest extends Thread{
 

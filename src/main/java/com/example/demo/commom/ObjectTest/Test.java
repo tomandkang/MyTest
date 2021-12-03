@@ -1,6 +1,4 @@
-package com.example.demo.ObjectTest;
-
-import com.sun.org.apache.bcel.internal.generic.NEW;
+package com.example.demo.commom.ObjectTest;
 
 public class Test {
 

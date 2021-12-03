@@ -1,4 +1,4 @@
-package com.example.demo.ObjectTest;
+package com.example.demo.commom.ObjectTest;
 
 
 public class Father {

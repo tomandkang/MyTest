@@ -1,4 +1,4 @@
-package com.example.demo.RedisUtils;
+package com.example.demo.commom.RedisUtils;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
