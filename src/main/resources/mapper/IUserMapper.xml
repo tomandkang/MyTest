@@ -6,11 +6,13 @@
           insert into user
           (
               id,
+              order_id，
               name
           )
           values
            (
               #{id},
+              #{orderId}，
               #{name}
           )
     </insert>

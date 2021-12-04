@@ -1,7 +1,6 @@
 package com.example.demo.commom.testClass;
 
 import com.alibaba.fastjson.JSON;
-import com.example.demo.commom.model.PlsShopeePublishCnscImportVo;
 
 import java.math.BigDecimal;
 import java.util.Arrays;

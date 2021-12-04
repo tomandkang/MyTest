@@ -6,6 +6,8 @@ import com.example.demo.entity.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
+
 /**
  * @Description:
  * @Author: chen kangwen
@@ -19,14 +21,13 @@ public class MySelfTest extends DemoApplicationTests {
     @Test
     public void test_a_1(){
         User user = new User();
-        user.setId(10);
-        user.setName("ckw");
+        user.setId(3);
+        user.setName("chenkangwen");
         iUserMapper.insert(user);
     }
     @Test
     public void test_a_2(){
-
-        User user = iUserMapper.selectUser("HGJHGJGH");
-        System.out.println(JSON.toJSONString(user));
+        List<User> users = iUserMapper.selectUser("chenkangwen");
+        System.out.println(JSON.toJSONString(users));
     }
 }
