@@ -4,15 +4,15 @@
 
 
     <insert id="batchInsert">
-        insert into user
+        insert into t_user
         (
-        order_id,
+        role_id,
         user_id,
         name
         )VALUES
         <foreach collection="list" item="item" index="index" separator=",">
             (
-            #{item.orderId},
+            #{item.roleId},
             #{item.userId},
             #{item.name}
             )

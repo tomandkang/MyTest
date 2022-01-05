@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -36,11 +38,38 @@ public class MySelfTest extends DemoApplicationTests {
 
     @Test
     public void test() {
+        List<UserDTO> userDTOS = new ArrayList<>();
+
         UserDTO userDTO = new UserDTO();
-        userDTO.setUserId(6);
-        userDTO.setOrderId(3);
-        userDTO.setName("hehe");
-        iUserDAO.batchInsert(Arrays.asList(userDTO));
+        userDTO.setRoleId(1);
+        userDTO.setUserId(1);
+        userDTO.setName("ABC");
+        userDTOS.add(userDTO);
+
+        UserDTO userDTO1 = new UserDTO();
+        userDTO1.setRoleId(2);
+        userDTO1.setUserId(2);
+        userDTO1.setName("康文");
+        userDTOS.add(userDTO1);
+
+
+        UserDTO userDTO2 = new UserDTO();
+        userDTO2.setRoleId(3);
+        userDTO2.setUserId(3);
+        userDTO2.setName("mexi");
+        userDTOS.add(userDTO2);
+
+
+        UserDTO userDTO3 = new UserDTO();
+        userDTO3.setRoleId(4);
+        userDTO3.setUserId(4);
+        userDTO3.setName("hehe");
+        userDTOS.add(userDTO3);
+
+        iUserDAO.batchInsert(userDTOS);
+
+
+
     }
 
     @Test
@@ -56,7 +85,7 @@ public class MySelfTest extends DemoApplicationTests {
     public void test_1() {
         UserDTO userDTO = new UserDTO();
         userDTO.setUserId(5);
-        userDTO.setOrderId(4);
+        userDTO.setRoleId(4);
         userDTO.setName("hehe");
         iUserService.batchInsert(Arrays.asList(userDTO));
         int i=1/0;
