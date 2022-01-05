@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import com.alibaba.fastjson.JSONArray;
 import com.example.demo.dao.IOrderDao;
 import com.example.demo.entity.Order;
 import org.apache.ibatis.session.SqlSession;
@@ -10,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.core.io.ClassPathResource;
 
 import java.io.InputStream;
+import java.util.List;
 
 /**
  * @Description:
@@ -20,20 +22,28 @@ public class MybatisTest extends DemoApplicationTests {
 
     private SqlSessionFactory sqlSessionFactory;
 
+    private static final String AUTO_PUSH_SHIELD_PLATFORM="[\"Amazon\",\"Wish\",\"EBay\",\"Shopee\",\"B2W\",\"Lazada\"]";
 
     @Before
     public void setUp() throws Exception{
-        ClassPathResource resource = new ClassPathResource("mybatis-config.xml");
+        ClassPathResource resource = new ClassPathResource("config/mybatis-config.xml");
         InputStream inputStream = resource.getInputStream();
         sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
     }
 
     @Test
     public void selectUserTest(){
-        int id = 12;
+        String orderId="1234";
         SqlSession sqlSession = sqlSessionFactory.openSession();
         IOrderDao iOrderDao = sqlSession.getMapper(IOrderDao.class);
-        Order order = iOrderDao.getOrderById(id);
+        Order order = iOrderDao.getOrderById(orderId);
         sqlSession.close();
+    }
+
+    @Test
+    public void test_1(){
+        Class classes=Order.class;
+        String name = classes.getName();
+        System.out.println(name);
     }
 }

@@ -1,5 +1,8 @@
 package com.example.demo.commom.ObjectTest;
 
+
+import java.util.Date;
+
 public class Son extends Father{
 
 
@@ -8,6 +11,8 @@ public class Son extends Father{
     private String name;
 
     private String school;
+
+    private Date createTime;
 
     public Integer getAge() {
         return age;
@@ -31,5 +36,13 @@ public class Son extends Father{
 
     public void setSchool(String school) {
         this.school = school;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 }

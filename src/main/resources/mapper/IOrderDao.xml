@@ -3,6 +3,6 @@
 <mapper namespace="com.example.demo.dao.IOrderDao">
 
     <select id="getOrderById" resultType="com.example.demo.entity.Order">
-
+        select * from t_order where order_id=#{orderId}
     </select>
 </mapper>

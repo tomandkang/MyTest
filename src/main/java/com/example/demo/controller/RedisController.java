@@ -11,8 +11,7 @@ import java.util.concurrent.Executor;
 @RestController
 public class RedisController {
 
-    @Autowired
-    private Jedis jedis;
+
 
     @Autowired
     private Executor executor;
