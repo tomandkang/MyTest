@@ -21,7 +21,8 @@ public class MySelfTest extends DemoApplicationTests {
     @Test
     public void test_a_1(){
         User user = new User();
-        user.setId(3);
+        user.setId(2);
+        user.setOrderId(10);
         user.setName("chenkangwen");
         iUserMapper.insert(user);
     }
