@@ -4,8 +4,11 @@ import com.alibaba.fastjson.JSON;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collection;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Son extends Father{
@@ -22,25 +25,20 @@ public class Son extends Father{
     }
 
     public static void main(String[] args) {
-       List<Son> sons = new ArrayList<>();
+        Map<String, Son> map = new HashMap<>();
         Son son = new Son();
         son.setSchool("xiaoxue");
         son.setAge(18);
         son.setName("kangkang");
+        map.put("0",son);
+        
         Son son1 = new Son();
         son1.setSchool("daxue");
         son1.setAge(18);
         son1.setName("kangwen");
-        sons.add(son1);
+        map.put("1",son1);
 
-        List<Son> list = sons.stream().filter(x -> x.getName().equals("kangwen")).collect(Collectors.toList());
-
-        Son son2 = list.get(0);
-        son2.setAge(20);
-        for (Son son3:sons){
-            System.out.println(JSON.toJSONString(son3));
-        }
-
+        System.out.println(JSON.toJSONString(new ArrayList<>(map.values())));
 
     }
 
