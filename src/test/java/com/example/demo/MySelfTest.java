@@ -31,4 +31,8 @@ public class MySelfTest extends DemoApplicationTests {
         List<User> users = iUserMapper.selectUser("chenkangwen");
         System.out.println(JSON.toJSONString(users));
     }
+    
+    @Test
+    public void test_a_3(){
+    }
 }
