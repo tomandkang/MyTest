@@ -5,6 +5,7 @@ import java.util.Date;
 
 public class Son extends Father{
 
+    private Long id;
 
     private Integer age;
 
@@ -13,6 +14,14 @@ public class Son extends Father{
     private String school;
 
     private Date createTime;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public Integer getAge() {
         return age;
