@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 /**
  * @Description:
@@ -29,15 +31,15 @@ public class Mytest {
         son1.setAge(19);
         son1.setSchool("小比崽子");
 
+
        List<Son> sons = new ArrayList<>();
        sons.add(son);
        sons.add(son1);
+       sons.add(null);
 
+        List<Son> collect = sons.stream().filter(Objects::nonNull).collect(Collectors.toList());
 
-        Son son2 = sons.stream().findFirst().orElse(null);
-        son2.setAge(50);
-        son2.setSchool("梅楼小学");
-        System.out.println(JSON.toJSONString(sons));
+        System.out.println(JSON.toJSONString(collect));
     }
 
     private static String readFile(String filename) throws IOException {

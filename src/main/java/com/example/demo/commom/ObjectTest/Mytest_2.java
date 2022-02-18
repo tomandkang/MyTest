@@ -12,20 +12,9 @@ import java.util.List;
 public class Mytest_2 {
 
     public static void main(String[] args)throws Exception{
-        List<Son> list = new ArrayList<>();
-        for (Long i=0L;i<10L;i++){
-            Son son = new Son();
-            son.setId(i);
-            son.setName("张三"+i);
-            son.setAge(18);
-            son.setSchool("小比崽子"+i);
-            list.add(son);
-        }
-
-        Long id = list.stream().max(Comparator.comparingLong(Son::getId)).get().getId();
-      //  Long id = list.stream().map(e -> e.getId()).sorted(Comparator.reverseOrder()).findFirst().orElse(0L);
-        System.out.println(id);
-
+        String s = "www.runoob.com";
+        char  result = s.charAt(6);
+        System.out.println(result);
 
     }
 }
