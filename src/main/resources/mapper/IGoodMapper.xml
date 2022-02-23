@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.IGoodMapper">
+
+    <insert id="insertGood" parameterType="com.example.demo.entity.Good">
+          insert into t_good
+          (
+              id,
+              good_name,
+              creater,
+              create_date
+          )
+          values
+           (
+              #{id},
+              #{goodName}，
+              #{creater},
+              #{createDate}
+          )
+    </insert>
+
+
+    <select id="getGoodById" resultType="com.example.demo.entity.Good">
+        select * from t_good where id=#{id}
+    </select>
+
+</mapper>

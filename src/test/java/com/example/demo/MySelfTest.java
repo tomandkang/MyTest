@@ -1,12 +1,12 @@
 package com.example.demo;
 
 import com.alibaba.fastjson.JSON;
-import com.example.demo.dao.IUserMapper;
-import com.example.demo.entity.User;
+import com.example.demo.dao.IGoodMapper;
+import com.example.demo.entity.Good;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.List;
+import java.util.Date;
 
 /**
  * @Description:
@@ -16,23 +16,22 @@ import java.util.List;
 public class MySelfTest extends DemoApplicationTests {
 
     @Autowired
-    private IUserMapper iUserMapper;
+    private IGoodMapper iGoodMapper;
 
     @Test
-    public void test_a_1(){
-        User user = new User();
-        user.setId(2);
-        user.setOrderId(10);
-        user.setName("chenkangwen");
-        iUserMapper.insert(user);
+    public void test_1(){
+        Good good = iGoodMapper.getGoodById(1);
+        System.out.println(JSON.toJSONString(good));
     }
+
     @Test
-    public void test_a_2(){
-        List<User> users = iUserMapper.selectUser("chenkangwen");
-        System.out.println(JSON.toJSONString(users));
-    }
-    
-    @Test
-    public void test_a_3(){
+    public void test_2(){
+        Good good = new Good();
+        good.setId(3);
+        good.setGoodName("chenkangwen1");
+        good.setCreater("chenkangwen1");
+        good.setCreateDate(new Date());
+        iGoodMapper.insertGood(good);
+
     }
 }
