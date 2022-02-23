@@ -1,20 +1,26 @@
 package com.example.demo.entity;
 
+import lombok.Data;
+
 import java.math.BigDecimal;
+import java.util.Date;
 
 /**
  * @Description:
  * @Author: chen kangwen
  * @Date: 2021/12/2 21:11
  **/
+@Data
 public class Order {
 
     private Integer id;
 
-    private String orderId;
+    private Integer orderNo;
 
-    private BigDecimal amount;
+    private Date orderTime;
 
-    private Integer productId;
+    private String creater;
+
+    private String orderContent;
 
 }
