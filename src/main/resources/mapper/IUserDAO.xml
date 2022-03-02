@@ -3,17 +3,34 @@
 <mapper namespace="com.example.demo.dao.IUserDAO">
 
 
-    <insert id="batchInsert">
+    <insert id="batchInsert" parameterType="com.example.demo.entity.UserDTO">
         insert into t_user
         (
+        user_id,
         role_id,
         name
         )VALUES
         <foreach collection="list" item="item" index="index" separator=",">
             (
+            #{item.userId},
             #{item.roleId},
             #{item.name}
             )
         </foreach>
     </insert>
+
+    <insert id="insertUserDTO" parameterType="com.example.demo.entity.UserDTO">
+        insert into t_user
+        (
+        user_id,
+        role_id,
+        name
+        )VALUES
+         (
+          #{userId},
+          #{roleId},
+          #{name}
+         )
+    </insert>
+
 </mapper>

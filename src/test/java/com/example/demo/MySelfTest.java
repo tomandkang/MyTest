@@ -24,17 +24,32 @@ public class MySelfTest extends DemoApplicationTests {
     public void test() {
         List<UserDTO> userDTOS = new ArrayList<>();
         UserDTO userDTO = new UserDTO();
-        userDTO.setRoleId(3);
+        userDTO.setRoleId(1);
+        userDTO.setUserId(1);
         userDTO.setName("康文");
         userDTOS.add(userDTO);
 
         UserDTO userDTO1 = new UserDTO();
-        userDTO1.setRoleId(4);
+        userDTO1.setRoleId(2);
+        userDTO1.setUserId(2);
         userDTO1.setName("康帅");
         userDTOS.add(userDTO1);
 
         iUserDAO.batchInsert(userDTOS);
     }
+
+
+
+    @Test
+    public void test_1() {
+
+        UserDTO userDTO = new UserDTO();
+        userDTO.setRoleId(312);
+        userDTO.setUserId(312);
+        userDTO.setName("康文");
+        iUserDAO.insertUserDTO(userDTO);
+    }
+
 
     @Test
     public void test_a_1(){

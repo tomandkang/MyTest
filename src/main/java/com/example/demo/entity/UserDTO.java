@@ -10,8 +10,9 @@ import lombok.Data;
 @Data
 public class UserDTO {
 
-    private Integer id;
+    private Long id;
     private Integer roleId;
+    private Integer userId;
     private String name;
 
 }

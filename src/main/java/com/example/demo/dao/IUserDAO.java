@@ -18,4 +18,6 @@ public interface IUserDAO {
 
     void batchInsert(@Param("list") List<UserDTO> list);
 
+
+    void insertUserDTO(UserDTO userDTO);
 }
