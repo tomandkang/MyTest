@@ -10,12 +10,12 @@ public class SuperMarketInvocationHandler implements InvocationHandler {
     /**
      * 被代理对象
      */
-    private SuperMarketAction superMarket;
+    private Object superMarket;
     /**
      * 构造函数
      * @param superMarket
      */
-    public SuperMarketInvocationHandler(SuperMarketAction superMarket) {
+    public SuperMarketInvocationHandler(Object superMarket) {
         this.superMarket = superMarket;
     }
 
