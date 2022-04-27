@@ -1,9 +1,13 @@
 package com.example.demo;
 
+import com.example.demo.commom.proxy.cglibDynamicProxy.CglibProxyFactory;
+import com.example.demo.commom.proxy.cglibDynamicProxy.User;
 import com.example.demo.commom.proxy.jdkDynamicProxy.SuperMarketInvocationHandler;
 import com.example.demo.commom.proxy.staticProxy.ExpressCompanyProxy;
 import com.example.demo.commom.proxy.staticProxy.SuperMarket;
 import com.example.demo.commom.proxy.staticProxy.SuperMarketAction;
+import net.sf.cglib.core.DebuggingClassWriter;
+import net.sf.cglib.proxy.Enhancer;
 import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Proxy;
@@ -30,5 +34,11 @@ public class ProxyTest extends DemoApplicationTests {
         proxy.deliverGoods();
     }
 
+    @Test
+    public void test_2(){
+        User user = new User();
+        User proxy = (User) new CglibProxyFactory(user).getProxyInstance();
+        proxy.say("hello world");
+    }
 
 }
