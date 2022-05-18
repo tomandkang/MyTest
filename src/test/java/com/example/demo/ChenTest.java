@@ -44,4 +44,51 @@ public class ChenTest extends DemoApplicationTests {
         System.out.println(JSON.toJSONString(list));
     }
 
+    @Test
+    public void test123(){
+        String str="我是你媽0x1e/0x1c";
+        String s = stripNonValidXMLCharacters(str);
+        System.out.println(s);
+    }
+
+
+
+    // 保留合法字符
+    public String stripNonValidXMLCharacters(String in) {
+        StringBuffer out = new StringBuffer(); // Used to hold the output.
+        char current; // Used to reference the current character.
+
+        if (in == null || ("".equals(in))) return ""; // vacancy test.
+        for (int i = 0; i < in.length(); i++) {
+            current = in.charAt(i); // NOTE: No IndexOutOfBoundsException caught here; it should not happen.
+            if ((current == 0x9) ||
+                    (current == 0xA) ||
+                    (current == 0xD) ||
+                    ((current >= 0x20) && (current <= 0xD7FF)) ||
+                    ((current >= 0xE000) && (current <= 0xFFFD)) ||
+                    ((current >= 0x10000) && (current <= 0x10FFFF)))
+                out.append(current);
+        }
+        return out.toString();
+    }
+
+
+    // 保留合法字符
+    public String stripNonValidXMLCharacters1(String in) {
+        StringBuffer out = new StringBuffer(); // Used to hold the output.
+        char current; // Used to reference the current character.
+        if (in == null || ("".equals(in))) return ""; // vacancy test.
+        for (int i = 0; i < in.length(); i++) {
+            current = in.charAt(i); // NOTE: No IndexOutOfBoundsException caught here; it should not happen.
+            if ((current == 0x9) ||
+                    (current == 0xA) ||
+                    (current == 0xD) ||
+                    ((current >= 0x20) && (current <= 0xD7FF)) ||
+                    ((current >= 0xE000) && (current <= 0xFFFD)) ||
+                    ((current >= 0x10000) && (current <= 0x10FFFF)))
+                out.append(current);
+        }
+        return out.toString();
+    }
+
 }
