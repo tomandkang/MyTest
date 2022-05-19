@@ -2,6 +2,7 @@ package com.example.demo;
 
 import com.alibaba.fastjson.JSON;
 import com.example.demo.commom.sorts.BubbleSort;
+import com.example.demo.commom.sorts.HeapSort;
 import com.example.demo.commom.sorts.InsertionSort;
 import com.example.demo.commom.sorts.QuickSort;
 import com.example.demo.commom.sorts.SelectionSort;
@@ -34,4 +35,12 @@ public class SortTest extends DemoApplicationTests {
         QuickSort.quickSort(a,0,a.length-1);
         System.out.println(JSON.toJSONString(a));
     }
+
+    @Test
+    public void test_4() throws Exception {
+        HeapSort.heapSort(a);
+        System.out.println(JSON.toJSONString(a));
+    }
+
+
 }
