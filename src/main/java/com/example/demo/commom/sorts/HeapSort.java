@@ -1,9 +1,14 @@
 package com.example.demo.commom.sorts;
 
-import java.util.Arrays;
-
 public class HeapSort {
 
+    /**
+     * 二叉树要点
+     * 大顶堆:arr[i] >= arr[2i+1] && arr[i] >= arr[2i+2]
+     * 小顶堆:arr[i] <= arr[2i+1] && arr[i] <= arr[2i+2]
+     * 最大左节点:array.length/2-1
+     * 最大右节点:array.length/2-2
+     */
     public static void heapSort(int[] array) {
         //从倒数第一个非叶子节点开始
         for (int i = array.length / 2 - 1; i >= 0; i--) {

@@ -2,6 +2,7 @@ package com.example.demo;
 
 import com.alibaba.fastjson.JSON;
 import com.example.demo.commom.sorts.BubbleSort;
+import com.example.demo.commom.sorts.HeadSortCkw;
 import com.example.demo.commom.sorts.HeapSort;
 import com.example.demo.commom.sorts.InsertionSort;
 import com.example.demo.commom.sorts.QuickSort;
@@ -11,6 +12,8 @@ import org.junit.jupiter.api.Test;
 public class SortTest extends DemoApplicationTests {
 
     private static final int a[] = {3, 44, 38, 5, 47, 15, 36, 26, 27, 2, 46, 4, 19, 50, 48};
+
+    private static final int arr[] = {4, 6, 8, 5, 9};
 
     @Test
     public void test_0() throws Exception {
@@ -32,14 +35,20 @@ public class SortTest extends DemoApplicationTests {
 
     @Test
     public void test_3() throws Exception {
-        QuickSort.quickSort(a,0,a.length-1);
+        QuickSort.quickSort(a, 0, a.length - 1);
         System.out.println(JSON.toJSONString(a));
     }
 
     @Test
     public void test_4() throws Exception {
-        HeapSort.heapSort(a);
-        System.out.println(JSON.toJSONString(a));
+        HeapSort.heapSort(arr);
+        System.out.println(JSON.toJSONString(arr));
+    }
+
+    @Test
+    public void test_5() throws Exception {
+        HeadSortCkw.headSort(arr);
+        System.out.println(JSON.toJSONString(arr));
     }
 
 
