@@ -1,7 +1,5 @@
 package com.example.demo.commom.proxy.jdkDynamicProxy;
 
-import com.example.demo.commom.proxy.staticProxy.SuperMarketAction;
-
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 

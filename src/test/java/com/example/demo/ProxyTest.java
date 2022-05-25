@@ -6,8 +6,6 @@ import com.example.demo.commom.proxy.jdkDynamicProxy.SuperMarketInvocationHandle
 import com.example.demo.commom.proxy.staticProxy.ExpressCompanyProxy;
 import com.example.demo.commom.proxy.staticProxy.SuperMarket;
 import com.example.demo.commom.proxy.staticProxy.SuperMarketAction;
-import net.sf.cglib.core.DebuggingClassWriter;
-import net.sf.cglib.proxy.Enhancer;
 import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Proxy;

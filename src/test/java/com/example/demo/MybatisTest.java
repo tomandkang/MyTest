@@ -8,7 +8,6 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
 import java.io.Reader;
 
 /**
@@ -38,7 +37,7 @@ public class MybatisTest extends DemoApplicationTests {
             Order order = iOrderDao.getOrderById("123456");
             //提交sqlSession
             sqlSession.close();
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
             //关闭sqlSession
