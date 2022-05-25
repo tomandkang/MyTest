@@ -1,7 +1,7 @@
 package com.example.demo;
 
 import com.alibaba.fastjson.JSON;
-import com.example.demo.dao.IOrderDao;
+import com.example.demo.dao.IOrderMapper;
 import com.example.demo.entity.Order;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +14,7 @@ public class ChenTest extends DemoApplicationTests {
 
 
     @Autowired
-    private IOrderDao iOrderDao;
+    private IOrderMapper iOrderMapper;
 
     @Test
     public void test_0() throws Exception {
@@ -34,13 +34,13 @@ public class ChenTest extends DemoApplicationTests {
         order1.setOrderNo(2);
         order1.setOrderTime(parse);
 
-        iOrderDao.insertOrder(order);
-        iOrderDao.insertOrder(order1);
+        iOrderMapper.insertOrder(order);
+        iOrderMapper.insertOrder(order1);
     }
 
     @Test
     public void test_1() throws Exception {
-        List<Order> list = iOrderDao.getOrderList();
+        List<Order> list = iOrderMapper.getOrderList();
         System.out.println(JSON.toJSONString(list));
     }
 

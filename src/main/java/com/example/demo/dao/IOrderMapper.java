@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Mapper
-public interface IOrderDao {
+public interface IOrderMapper {
 
     Order getOrderById(@Param("id") String id);
 

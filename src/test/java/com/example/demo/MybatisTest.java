@@ -1,6 +1,6 @@
 package com.example.demo;
 
-import com.example.demo.dao.IOrderDao;
+import com.example.demo.dao.IOrderMapper;
 import com.example.demo.entity.Order;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -33,8 +33,8 @@ public class MybatisTest extends DemoApplicationTests {
             reader = Resources.getResourceAsReader(resource);
             sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
             sqlSession = sqlSessionFactory.openSession();
-            IOrderDao iOrderDao = sqlSession.getMapper(IOrderDao.class);
-            Order order = iOrderDao.getOrderById("123456");
+            IOrderMapper iOrderMapper = sqlSession.getMapper(IOrderMapper.class);
+            Order order = iOrderMapper.getOrderById("123456");
             //提交sqlSession
             sqlSession.close();
         } catch (Exception e) {
