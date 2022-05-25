@@ -2,13 +2,16 @@ package com.example.demo;
 
 import com.example.demo.dao.IOrderDao;
 import com.example.demo.entity.Order;
+import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.jupiter.api.Test;
 import org.springframework.core.io.ClassPathResource;
 
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.Reader;
 
 /**
  * @Description:
@@ -26,15 +29,23 @@ public class MybatisTest extends DemoApplicationTests {
     //使用它的目的就是用来创建多个SqlSessionFactory实例,
     //最好不要让他一直存在,进而保证所有用来解析xml的资源可以被释放
     @Test
-    public void selectUserTest() throws Exception {
-        ClassPathResource resource = new ClassPathResource("/config/mybatis-config.xml");
-        InputStream inputStream = resource.getInputStream();
-        sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
-        sqlSession = sqlSessionFactory.openSession();
-        IOrderDao iOrderDao = sqlSession.getMapper(IOrderDao.class);
-        Order order = iOrderDao.getOrderById("123456");
-        sqlSession.commit();
-        sqlSession.close();
+    public void selectUserTest() {
+        String resource = "mybatis-config.xml";
+        Reader reader;
+        try {
+            reader = Resources.getResourceAsReader(resource);
+            sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
+            sqlSession = sqlSessionFactory.openSession();
+            IOrderDao iOrderDao = sqlSession.getMapper(IOrderDao.class);
+            Order order = iOrderDao.getOrderById("123456");
+            //提交sqlSession
+            sqlSession.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            //关闭sqlSession
+            sqlSession.close();
+        }
     }
 
 
