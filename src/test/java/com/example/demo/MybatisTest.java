@@ -27,13 +27,12 @@ public class MybatisTest extends DemoApplicationTests {
     //最好不要让他一直存在,进而保证所有用来解析xml的资源可以被释放
     @Test
     public void selectUserTest() throws Exception {
-        String id = "123456";
         ClassPathResource resource = new ClassPathResource("/config/mybatis-config.xml");
         InputStream inputStream = resource.getInputStream();
         sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
         sqlSession = sqlSessionFactory.openSession();
         IOrderDao iOrderDao = sqlSession.getMapper(IOrderDao.class);
-        Order order = iOrderDao.getOrderById(id);
+        Order order = iOrderDao.getOrderById("123456");
         sqlSession.commit();
         sqlSession.close();
     }
