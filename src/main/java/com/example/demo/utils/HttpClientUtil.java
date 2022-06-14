@@ -11,6 +11,7 @@ import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpPut;
+import org.apache.http.entity.ContentType;
 import org.apache.http.entity.InputStreamEntity;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.entity.mime.HttpMultipartMode;
@@ -171,7 +172,7 @@ public class HttpClientUtil {
     }
 
 
-    public static String doPostFrom(String url, Map<String, Object> headers, Map<String, String> paramMap) throws Exception {
+    public static String doPostXwwwForm(String url, Map<String, Object> headers, Map<String, String> paramMap) throws Exception {
         String result = "";
         CloseableHttpResponse httpResponse = null;
         CloseableHttpClient httpClient = HttpClients.createDefault();
@@ -180,8 +181,10 @@ public class HttpClientUtil {
         httpPost.setConfig(requestConfig);
         try {
             // 设置请求头
-            for (Map.Entry<String, Object> param : headers.entrySet()) {
-                httpPost.addHeader(param.getKey(), String.valueOf(param.getValue()));
+            if(!CollectionUtils.isEmpty(headers)){
+                for (Map.Entry<String, Object> param : headers.entrySet()) {
+                    httpPost.addHeader(param.getKey(), String.valueOf(param.getValue()));
+                }
             }
             //装填参数
             List<NameValuePair> nvps = new ArrayList<>();
@@ -190,9 +193,8 @@ public class HttpClientUtil {
                     nvps.add(new BasicNameValuePair(entry.getKey(), entry.getValue()));
                 }
             }
-            UrlEncodedFormEntity urlEncodedFormEntity = new UrlEncodedFormEntity(nvps, "utf-8");
-            urlEncodedFormEntity.setContentType("application/x-www-form-urlencoded");
-            urlEncodedFormEntity.setContentEncoding("UTF-8");
+            UrlEncodedFormEntity urlEncodedFormEntity = new UrlEncodedFormEntity(nvps,"UTF-8");
+            urlEncodedFormEntity.setContentType(ContentType.APPLICATION_FORM_URLENCODED.getMimeType());
             httpPost.setEntity(urlEncodedFormEntity);
             httpResponse = httpClient.execute(httpPost);
             HttpEntity entity = httpResponse.getEntity();
@@ -204,6 +206,41 @@ public class HttpClientUtil {
             close(httpResponse, httpClient);
         }
     }
+    public static String doPostFormData(String url, Map<String, Object> headers, Map<String, String> paramMap) throws Exception {
+        String result = "";
+        CloseableHttpResponse httpResponse = null;
+        CloseableHttpClient httpClient = HttpClients.createDefault();
+        RequestConfig requestConfig = getRequestConfig();
+        HttpPost httpPost = new HttpPost(url);
+        httpPost.setConfig(requestConfig);
+        try {
+            // 设置请求头
+            if(!CollectionUtils.isEmpty(headers)){
+                for (Map.Entry<String, Object> param : headers.entrySet()) {
+                    httpPost.addHeader(param.getKey(), String.valueOf(param.getValue()));
+                }
+            }
+            //装填参数
+            MultipartEntityBuilder builder = MultipartEntityBuilder.create().setMode(HttpMultipartMode.RFC6532);
+            builder.setContentType(ContentType.MULTIPART_FORM_DATA);
+            if(!CollectionUtils.isEmpty(paramMap)){
+                for (Map.Entry<String, String> param : paramMap.entrySet()){
+                    builder.addTextBody(param.getKey(),param.getValue());
+                }
+            }
+            HttpEntity multipart = builder.build();
+            httpPost.setEntity(multipart);
+            httpResponse = httpClient.execute(httpPost);
+            HttpEntity entity = httpResponse.getEntity();
+            result = EntityUtils.toString(entity, "UTF-8");
+            return result;
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            close(httpResponse, httpClient);
+        }
+    }
+
 
 
     public static String doPutXml(String url, Map<String, Object> headers, String xmlData) throws Exception {
@@ -219,7 +256,7 @@ public class HttpClientUtil {
             httpPut.addHeader(param.getKey(), String.valueOf(param.getValue()));
         }
         InputStreamEntity reqEntity = new InputStreamEntity(new ByteArrayInputStream(xmlData.getBytes()));
-        reqEntity.setContentType("application/xml");
+        reqEntity.setContentType(ContentType.APPLICATION_XML.getMimeType());
         reqEntity.setContentEncoding("utf-8");
         reqEntity.setChunked(true);
         httpPut.setEntity(reqEntity);
