@@ -33,7 +33,7 @@ public class ProxyTest extends DemoApplicationTests {
     }
 
     @Test
-    public void test_2(){
+    public void test_2() {
         User user = new User();
         User proxy = (User) new CglibProxyFactory(user).getProxyInstance();
         proxy.say("hello world");

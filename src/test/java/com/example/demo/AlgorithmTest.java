@@ -133,8 +133,8 @@ public class AlgorithmTest extends DemoApplicationTests {
     }
 
     @Test
-    public void test4(){
-        int[] digits=new int[]{4,3,2,1};
+    public void test4() {
+        int[] digits = new int[]{4, 3, 2, 1};
         int[] nums = plusOne(digits);
         System.out.println(JSON.toJSONString(nums));
     }
@@ -162,9 +162,8 @@ public class AlgorithmTest extends DemoApplicationTests {
     }
 
     @Test
-    private void test5(){
-        int[] nums =new int[]{0,1,0,3,12};
-
+    private void test5() {
+        int[] nums = new int[]{0, 1, 0, 3, 12};
 
 
     }

@@ -1,33 +1,27 @@
 package com.example.demo.commom.collection;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 import com.example.demo.entity.UserDTO;
 
+import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.LinkedList;
 import java.util.List;
 
 public class ListTest {
 
     public static void main(String[] args) {
-      String str="{\"data\":{\"platformCode\":\"Walmart\",\"skus\":[\"A301\",\"A306\"],\"basicId\":\"1000622\",\"profitsRate\":15,\"discountRate\":null,\"type\":2,\"ifManual\":0},\"ticket\":\"ff5d368bdb1faee41d8dc8de00d417af\",\"operator\":\"chenkangwen1\",\"personName\":\"陈康文\",\"funcVersion\":\"910498e1483716f0538e479c716e1d4d\",\"moduleUrl\":\"/publish/salespricing/domesticwarehouse/\",\"requestId\":\"061009074376153925c8f621bdae7f95\",\"deviceName\":\"Chrome浏览器\"}";
-        JSONObject jsonObj =JSON.parseObject(str);
-        JSONObject dataObj = jsonObj.getJSONObject("data");
-        String platform = dataObj.getString("platformCode");
-        String basicId = dataObj.getString("basicId");
-        Float profitsRate = dataObj.getFloat("profitsRate");
-        String discountRate = dataObj.getString("discountRate");
-        String skus = dataObj.getString("skus");
-        Integer shipmentType = dataObj.getInteger("shipmentType");
-        System.out.println(JSON.toJSONString(skus));
-        System.out.println(shipmentType);
-
-
+        String time = "2022-06-21T09:07:00.000+00:00";
+        ZonedDateTime zonedDateTime = ZonedDateTime.parse(time, DateTimeFormatter.ISO_OFFSET_DATE_TIME);
+        ZonedDateTime zonedDateTime1 = zonedDateTime.withZoneSameInstant(ZoneOffset.ofHours(8));
+        System.out.println(zonedDateTime1.toLocalDateTime());
     }
 
-    public static void test(){
+    public static void test() {
         List<UserDTO> list = new ArrayList<>();
         list.add(new UserDTO("西施", 18));
         list.add(new UserDTO("王昭君", 16));
@@ -50,4 +44,16 @@ public class ListTest {
         });
         System.err.println(JSON.toJSONString(list));
     }
+
+    public static void test_1() {
+        LinkedList<String> linkedList = new LinkedList<>();
+        linkedList.add("hahaha");
+        linkedList.add("hehehe");
+        for (String str :linkedList){
+
+        }
+        String first = linkedList.getFirst();
+        System.out.println(first);
+    }
+
 }

@@ -6,6 +6,7 @@ import com.example.demo.entity.Order;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -45,12 +46,14 @@ public class ChenTest extends DemoApplicationTests {
     }
 
     @Test
-    public void test123(){
-        String str="我是你媽0x1e/0x1c";
-        String s = stripNonValidXMLCharacters(str);
-        System.out.println(s);
+    public void test123() {
+        BigDecimal height = new BigDecimal("3.00");
+        BigDecimal heightTotal = new BigDecimal("0.00");
+        for (int i = 1; i <= 3; i++) {
+            heightTotal = heightTotal.add(height.multiply(new BigDecimal(i)));
+        }
+        System.err.println(heightTotal);
     }
-
 
 
     // 保留合法字符
