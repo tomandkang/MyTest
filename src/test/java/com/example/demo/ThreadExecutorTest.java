@@ -3,16 +3,16 @@ package com.example.demo;
 import com.example.demo.commom.threads.ThreadPoolFactory;
 import org.junit.jupiter.api.Test;
 
+import java.io.File;
 import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
-public class ThreadExecutorTest extends DemoApplicationTests{
+public class ThreadExecutorTest extends DemoApplicationTests {
 
-    private static final Integer WORKER_POOL_SIZE = 1;
+    private static final Integer WORKER_POOL_SIZE = 10;
 
-    private ThreadPoolExecutor workerPool = new ThreadPoolExecutor(
+    private ThreadPoolExecutor workPool = new ThreadPoolExecutor(
             WORKER_POOL_SIZE,
             WORKER_POOL_SIZE,
             0L,
@@ -24,7 +24,18 @@ public class ThreadExecutorTest extends DemoApplicationTests{
 
     @Test
     public void test_0() throws Exception {
-        workerPool.awaitTermination(24, TimeUnit.HOURS);
+        //workPool.awaitTermination(24, TimeUnit.HOURS);
+        for (int i = 0; i < 10; i++) {
+            workPool.execute(() -> {
+                System.out.println("名称:" + Thread.currentThread().getName());
+            });
+        }
+        System.in.read();
     }
 
+    @Test
+    public void test_1() throws Exception {
+        File file = new File("D:\\googleDownloads\\公司文件\\新建文本文档.txt");
+        System.out.println(file.exists());
+    }
 }
