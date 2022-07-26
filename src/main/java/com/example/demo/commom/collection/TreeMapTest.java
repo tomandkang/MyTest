@@ -9,7 +9,7 @@ public class TreeMapTest {
         TreeMap<Integer, String> treemap = new TreeMap<>();
         SortedMap<Integer, String> treemapincl;
 
-        // populating tree map
+        //populating tree map
         treemap.put(2, "two");
         treemap.put(1, "one");
         treemap.put(3, "three");
