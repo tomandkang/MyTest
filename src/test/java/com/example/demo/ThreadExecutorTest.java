@@ -4,6 +4,8 @@ import com.example.demo.commom.threads.ThreadPoolFactory;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
@@ -37,5 +39,13 @@ public class ThreadExecutorTest extends DemoApplicationTests {
     public void test_1() throws Exception {
         File file = new File("D:\\googleDownloads\\公司文件\\新建文本文档.txt");
         System.out.println(file.exists());
+    }
+
+    @Test
+    public void test_2() throws Exception {
+        Map<Long, String> soFarUpdateTimeMap = new HashMap<Long, String>();
+        String s = soFarUpdateTimeMap.get(1L);
+        System.out.println(s);
+
     }
 }
