@@ -3,13 +3,18 @@ package com.example.demo;
 import com.alibaba.fastjson.JSON;
 import com.example.demo.dao.IOrderMapper;
 import com.example.demo.entity.Order;
-import org.junit.jupiter.api.Test;
+import org.apache.commons.lang3.StringUtils;
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class ChenTest extends DemoApplicationTests {
 
@@ -55,6 +60,74 @@ public class ChenTest extends DemoApplicationTests {
         System.err.println(heightTotal);
     }
 
+    @Test
+    public void test234() {
+        String productAmount = "USD 13.85 ll  23   oo     yy";
+        String[] flipping = flipping(productAmount);
+        for (String str : flipping) {
+            System.out.println(str);
+        }
+
+    }
+
+    public static String[] flipping(String str) {
+        String[] split = str.split("\\s+");//分割一个或多个空格
+        return split;
+    }
+
+    public static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+    @Test
+    public void test345() {
+        String str = "2021年10月16日 下午08时41分56秒";
+        LocalDate localDate = dealAppealByText(str);
+        System.out.println(localDate);
+    }
+
+    private LocalDate dealAppealByText(String appealByText) {
+        int yearInt = appealByText.indexOf("年");
+        int monthInt = appealByText.indexOf("月");
+        int dayInt = appealByText.indexOf("日");
+        if (yearInt > 0 && monthInt > 0 && dayInt > 0) {
+            String year = appealByText.substring(0, yearInt);
+            String month = appealByText.substring(yearInt + 1, monthInt);
+            String day = appealByText.substring(monthInt + 1, dayInt);
+            String dateStr = year + "-" + month + "-" + day;
+            return LocalDate.parse(dateStr, DATE_FORMATTER);
+        }
+        return null;
+    }
+
+
+    @Test
+    public void test346() {
+        String str = "大奉打更人";
+        String s = unicodeToString(str);
+        System.out.println(s);
+    }
+
+
+    /**
+     * @Param: [str]
+     * @Return: java.lang.String
+     * @Date: 2022/8/27
+     * @Author: chenkangwen
+     * @Desc: Unicode转汉字字符串
+     */
+    public String unicodeToString(String str) {
+        if (!StringUtils.isEmpty(str)) {
+            Pattern pattern = Pattern.compile("(\\\\u(\\p{XDigit}{4}))");
+            Matcher matcher = pattern.matcher(str);
+            char ch;
+            while (matcher.find()) {
+                String group = matcher.group(2);
+                ch = (char) Integer.parseInt(group, 16);
+                String group1 = matcher.group(1);
+                str = str.replace(group1, ch + "");
+            }
+        }
+        return str;
+    }
 
     // 保留合法字符
     public String stripNonValidXMLCharacters(String in) {
