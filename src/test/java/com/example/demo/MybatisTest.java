@@ -46,4 +46,15 @@ public class MybatisTest extends DemoApplicationTests {
     }
 
 
+    @Test
+    public void testYou() {
+        //扩展类加载器Main
+        ClassLoader classLoader = MybatisTest.class.getClassLoader();
+        //表示当前线程的类加载器——应用程序类加载器
+        ClassLoader contextClassLoader = Thread.currentThread().getContextClassLoader();
+        //启动类加载器
+        ClassLoader systemClassLoader = ClassLoader.getSystemClassLoader();
+        System.out.println(classLoader);
+    }
+
 }
