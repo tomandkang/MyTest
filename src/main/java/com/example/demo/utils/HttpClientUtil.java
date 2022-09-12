@@ -78,7 +78,7 @@ public class HttpClientUtil {
                     String fileName = header.substring(header.indexOf("filename="), length);
                     String[] str = fileName.split("=");
                     filePath = filePath + str[1];
-                    FileUtils.createFile(filePath);
+                    FileUtil.createFile(filePath);
                     File reportFile = new File(filePath);
                     outputStream = new FileOutputStream(reportFile);
                     FileCopyUtils.copy(inputStream, outputStream);

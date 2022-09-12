@@ -3,12 +3,15 @@ package com.example.demo.utils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.zip.GZIPInputStream;
@@ -18,9 +21,9 @@ import java.util.zip.GZIPInputStream;
  * @Date: 2019/6/3:20:26
  * @Description:
  */
-public class FileUtils {
+public class FileUtil {
 
-    private static Logger LOGGER = LogManager.getLogger(FileUtils.class);
+    private static Logger LOGGER = LogManager.getLogger(FileUtil.class);
 
     public static boolean createFile(String destFileName) {
         File file = new File(destFileName);
@@ -146,6 +149,47 @@ public class FileUtils {
                 }
                 return out.toString("UTF-8");
             }
+        }
+    }
+
+
+    public static void test(File file){
+        StringBuilder sb = new StringBuilder();
+        try(FileInputStream fi = new FileInputStream(file);) {
+            int len=0;
+            byte bytearr[] = new byte[1024];
+            while ((len = fi.read(bytearr))!=-1){
+                sb.append(new String(bytearr,0,len));
+            }
+        } catch (Exception e) {
+        }
+        System.out.println("读取的文件内容为："+sb.toString());	//将字节型数组转换为字符串
+    }
+
+    public static void test1(File file)throws Exception{
+        StringBuilder result = new StringBuilder();
+        String str= null;
+        try(FileReader fileReader = new FileReader(file);
+            BufferedReader br = new BufferedReader(fileReader);) {
+            str = null;
+            while ((str=br.readLine())!=null){
+                System.out.println(str);
+                result.append(str);
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static void readFile(String filePath){
+        try (InputStream inputStream = new FileInputStream(new File(filePath));
+             InputStreamReader reader = new InputStreamReader(inputStream);
+             BufferedReader br = new BufferedReader(reader)) {
+            String jsonStr;
+            while ((jsonStr=br.readLine())!=null){
+                System.out.println(jsonStr);
+            }
+        } catch (Exception e) {
         }
     }
 

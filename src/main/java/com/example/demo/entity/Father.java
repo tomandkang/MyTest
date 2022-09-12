@@ -1,7 +1,10 @@
 package com.example.demo.entity;
 
+import com.example.demo.commom.annotation.MyAnnotation;
+
 public class Father {
 
+    @MyAnnotation
     private Boolean hasWife;
 
 

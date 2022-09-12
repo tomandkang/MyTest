@@ -15,6 +15,7 @@ import java.util.List;
  */
 @Data
 public class EmailSendRequest implements Serializable {
+
     private static final long serialVersionUID = 7936449297455595859L;
 
     /**
