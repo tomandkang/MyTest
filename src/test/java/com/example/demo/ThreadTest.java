@@ -15,10 +15,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
+import java.util.concurrent.*;
 import java.util.stream.Collectors;
 
 public class ThreadTest extends DemoApplicationTests {
@@ -56,6 +53,13 @@ public class ThreadTest extends DemoApplicationTests {
         MyThreadThree myThreadThree = new MyThreadThree();
         ExecutorService pool = Executors.newSingleThreadExecutor();
         Future<Object> submit = pool.submit(myThreadThree);
+
+
+        pool.shutdown();
+        pool.shutdownNow();
+        pool.isShutdown();
+        pool.isTerminated();
+        boolean b = pool.awaitTermination(100, TimeUnit.SECONDS);
         System.out.println(submit.get());
     }
 

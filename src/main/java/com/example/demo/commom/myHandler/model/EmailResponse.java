@@ -1,4 +1,4 @@
-package com.example.demo.commom.model;
+package com.example.demo.commom.myHandler.model;
 
 import lombok.Data;
 

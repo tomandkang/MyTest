@@ -1,23 +1,32 @@
 package com.example.demo.entity;
 
+import lombok.Data;
+
+@Data
 public class Son extends Father{
+
+    private String name;
+
+    private String age;
 
 
     static {
-        System.out.println("子类静态代码块");
     }
 
     {
-        System.out.println("子类代码块");
+
     }
 
     public Son() {
-        System.out.println("子类无参数构造");
     }
 
     public Son(Boolean hasWife) {
         super(hasWife);
-        System.out.println("子类有参数构造");
+    }
+
+    public Son(String name,String age){
+        this.name=name;
+        this.age=age;
     }
 
     public void say(){

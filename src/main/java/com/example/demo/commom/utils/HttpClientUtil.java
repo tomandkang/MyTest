@@ -2,7 +2,7 @@ package com.example.demo.commom.utils;
 
 import com.alibaba.fastjson.JSONObject;
 
-import com.example.demo.commom.model.UploadResponse;
+import com.example.demo.commom.myHandler.model.UploadResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.apache.hc.client5.http.classic.methods.HttpGet;

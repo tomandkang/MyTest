@@ -6,19 +6,16 @@ import com.example.demo.entity.UserDTO;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class ListTest {
 
     public static void main(String[] args) {
-        String time = "2022-06-21T09:07:00.000+00:00";
-        ZonedDateTime zonedDateTime = ZonedDateTime.parse(time, DateTimeFormatter.ISO_OFFSET_DATE_TIME);
-        ZonedDateTime zonedDateTime1 = zonedDateTime.withZoneSameInstant(ZoneOffset.ofHours(8));
-        System.out.println(zonedDateTime1.toLocalDateTime());
+        LinkedList<String> llt = new LinkedList<>();
+        llt.add("hello");
+
+        Vector<String> vector = new Vector<>();
+        vector.add("hello");
     }
 
     public static void test() {

@@ -1,19 +1,14 @@
 package com.example.demo;
 
 import com.alibaba.fastjson.JSON;
-import com.example.demo.commom.sorts.BubbleSort;
-import com.example.demo.commom.sorts.HeadSortCkw;
-import com.example.demo.commom.sorts.HeapSort;
-import com.example.demo.commom.sorts.InsertionSort;
-import com.example.demo.commom.sorts.QuickSort;
-import com.example.demo.commom.sorts.SelectionSort;
+import com.example.demo.commom.sorts.*;
 import org.junit.jupiter.api.Test;
 
 public class SortTest extends DemoApplicationTests {
 
     private static final int a[] = {3, 44, 38, 5, 47, 15, 36, 26, 27, 2, 46, 4, 19, 50, 48};
 
-    private static final int arr[] = {4, 6, 8, 5, 9};
+    private static final int arr[] = {4, 8, 7, 5, 6};
 
     @Test
     public void test_0() throws Exception {
@@ -50,6 +45,10 @@ public class SortTest extends DemoApplicationTests {
         HeadSortCkw.headSort(arr);
         System.out.println(JSON.toJSONString(arr));
     }
+    @Test
+    public void test_6(){
+        TopKSort.topKSort();
 
+    }
 
 }

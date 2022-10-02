@@ -17,20 +17,19 @@ public class Father {
     }
 
     public Father() {
-        System.out.println("父类无参数构造");
     }
 
     public Father(Boolean hasWife) {
         this.hasWife = hasWife;
-        System.out.println("父类有参数构造");
+
     }
 
     static {
-        System.out.println("父类静态代码块");
+
     }
 
     {
-        System.out.println("父类代码块");
+
     }
 
     public void say(){

@@ -1,4 +1,4 @@
-package com.example.demo.commom.RedisConfig;
+package com.example.demo.commom.proxy.cglibDynamicProxy.RedisConfig;
 
 import org.springframework.stereotype.Component;
 

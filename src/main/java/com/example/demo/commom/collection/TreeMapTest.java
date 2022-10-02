@@ -5,7 +5,7 @@ import java.util.TreeMap;
 
 public class TreeMapTest {
 
-    public static void main(String[] args) {
+    public  static void main(String[] args) {
         TreeMap<Integer, String> treemap = new TreeMap<>();
         SortedMap<Integer, String> treemapincl;
 
@@ -25,5 +25,15 @@ public class TreeMapTest {
 
         System.out.println("First key is: " + treemap.firstKey());
         System.out.println("Last key is: " + treemap.lastKey());
+    }
+
+
+    public synchronized void test(){
+
+        synchronized (this){
+
+        }
+
+
     }
 }

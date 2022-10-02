@@ -1,8 +1,8 @@
 package com.example.demo.commom.utils;
 
-import com.example.demo.commom.model.BaseEmail;
-import com.example.demo.commom.model.EmailResponse;
-import com.example.demo.commom.model.UploadResponse;
+import com.example.demo.commom.myHandler.model.BaseEmail;
+import com.example.demo.commom.myHandler.model.EmailResponse;
+import com.example.demo.commom.myHandler.model.UploadResponse;
 import com.sun.mail.imap.IMAPFolder;
 import com.sun.mail.imap.IMAPStore;
 import lombok.extern.slf4j.Slf4j;

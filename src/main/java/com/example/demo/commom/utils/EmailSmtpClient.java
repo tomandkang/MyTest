@@ -2,7 +2,7 @@ package com.example.demo.commom.utils;
 
 
 
-import com.example.demo.commom.model.BaseEmail;
+import com.example.demo.commom.myHandler.model.BaseEmail;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.activation.DataHandler;
