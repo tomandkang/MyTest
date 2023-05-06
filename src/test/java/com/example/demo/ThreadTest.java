@@ -59,7 +59,8 @@ public class ThreadTest extends DemoApplicationTests {
         pool.shutdownNow();
         pool.isShutdown();
         pool.isTerminated();
-        boolean b = pool.awaitTermination(100, TimeUnit.SECONDS);
+        boolean b = pool.awaitTermination(3, TimeUnit.SECONDS);
+        System.out.println(b);
         System.out.println(submit.get());
     }
 

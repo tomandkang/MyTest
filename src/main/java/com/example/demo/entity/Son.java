@@ -29,6 +29,7 @@ public class Son extends Father{
         this.age=age;
     }
 
+    @Override
     public void say(){
         System.out.println("这个是子类");
     }
