@@ -10,7 +10,6 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class DemoApplication {
 
     public static void main(String[] args) {
-        ApplicationContext classPathXmlApplicationContext = new ClassPathXmlApplicationContext("bean.xml");
         SpringApplication.run(DemoApplication.class, args);
     }
 
