@@ -3,7 +3,6 @@ package com.example.demo.commom.sorts;
 public class BubbleSort {
 
     /**
-     *
      * @Param: [nums]
      * @Return: void
      * @Date: 2022/5/18
