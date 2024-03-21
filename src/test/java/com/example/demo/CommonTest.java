@@ -1,8 +1,6 @@
 package com.example.demo;
 
 import com.alibaba.fastjson.JSON;
-import com.example.demo.entity.Father;
-import com.example.demo.entity.UserDTO;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 
@@ -22,23 +20,9 @@ public class CommonTest extends DemoApplicationTests {
 
     private static Integer i = 1;
 
-    public static void main(String[] args) throws Exception {
-        System.out.println(~30);
-        System.out.println(reverse(30));
-    }
 
-    public static Integer reverse(int num) {
+    public Integer reverse(int num) {
         return ~(num - 1);
-    }
-
-    @Test
-    public void test() {
-        final UserDTO userDTO = new UserDTO();
-        userDTO.setName("你真的笑死个人");
-        // userDTO = new UserDTO();
-        System.out.println(userDTO.getName());
-
-
     }
 
     @Test
@@ -48,16 +32,6 @@ public class CommonTest extends DemoApplicationTests {
         System.out.println(new String().equals(""));
     }
 
-    @Test
-    public void test2() {
-        int[] arr = new int[]{5, 0, 6, 7, 3, 9, 1, 4};
-        int[] index = new int[]{6, 0, 2, 1, 3, 6, 7, 0, 2, 5, 4};
-        String tel = "";
-        for (int i : index) {
-            tel += arr[1];
-        }
-        System.out.println("联系方式:" + tel);
-    }
 
 
     @Test
@@ -83,12 +57,6 @@ public class CommonTest extends DemoApplicationTests {
     }
 
     @Test
-    public void test5() {
-        int i = new Father().hashCode();
-        System.out.println(i);
-    }
-
-    @Test
     public void test6() {
         List<String> list = new ArrayList<>();
         list.add("hello");
@@ -96,29 +64,6 @@ public class CommonTest extends DemoApplicationTests {
         System.out.println(JSON.toJSONString(list));
     }
 
-    @Test
-    public void test7() {
-        Map<String, Object> resultMap = new HashMap<>();
-        resultMap.put("xixi", new Father(true));
-        resultMap.put("HEHE", null);
-
-        Map<String, Object> map = new HashMap<>();
-        map.put("hello", "hello");
-        map.put("hehe", resultMap);
-
-
-        Map<String, Object> o = (Map<String, Object>) map.get("hehe");
-        Father xixi = (Father) o.get("HEHE");
-        System.out.println(JSON.toJSONString(xixi));
-
-        new Thread(() -> {
-
-        }).start();
-
-        new Thread() {
-
-        };
-    }
 
     @Test
     public void test8() {

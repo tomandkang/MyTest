@@ -1,85 +1,52 @@
 package com.example.demo.commom.SpringContextUtils;
 
+import org.apache.commons.lang3.Validate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.DisposableBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
-
-import javax.servlet.http.HttpServletRequest;
 
 @Component
-public class SpringContextUtil implements ApplicationContextAware {
+public class SpringContextUtil implements ApplicationContextAware, DisposableBean {
 
-    /**
-     * 上下文对象实例
-     */
-    private static ApplicationContext applicationContext;
+    private static Logger logger = LoggerFactory.getLogger(SpringContextUtil.class);
+
+    private static ApplicationContext applicationContext = null;
+
+    @Override
+    public void destroy() throws Exception {
+        applicationContext = null;
+    }
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        this.applicationContext = applicationContext;
+        SpringContextUtil.applicationContext = applicationContext;
     }
 
     /**
-     * 获取applicationContext
-     *
-     * @return
+     * 从静态变量applicationContext中取得Bean, 自动转型为所赋值对象的类型.
      */
-    public static ApplicationContext getApplicationContext() {
-        return applicationContext;
+    public static <T> T getBean(String name) {
+        assertContextInjected();
+        return (T) applicationContext.getBean(name);
     }
 
     /**
-     * 获取HttpServletRequest
+     * 从静态变量applicationContext中取得Bean, 自动转型为所赋值对象的类型.
      */
-    public static HttpServletRequest getHttpServletRequest() {
-        return ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-    }
-
-    public static String getDomain(){
-        HttpServletRequest request = getHttpServletRequest();
-        StringBuffer url = request.getRequestURL();
-        return url.delete(url.length() - request.getRequestURI().length(), url.length()).toString();
-    }
-
-    public static String getOrigin(){
-        HttpServletRequest request = getHttpServletRequest();
-        return request.getHeader("Origin");
+    public static <T> T getBean(Class<T> requiredType) {
+        assertContextInjected();
+        return applicationContext.getBean(requiredType);
     }
 
     /**
-     * 通过name获取 Bean.
-     *
-     * @param name
-     * @return
+     * 检查ApplicationContext不为空.
      */
-    public static Object getBean(String name) {
-        return getApplicationContext().getBean(name);
-    }
-
-    /**
-     * 通过class获取Bean.
-     *
-     * @param clazz
-     * @param       <T>
-     * @return
-     */
-    public static <T> T getBean(Class<T> clazz) {
-        return getApplicationContext().getBean(clazz);
-    }
-
-    /**
-     * 通过name,以及Clazz返回指定的Bean
-     *
-     * @param name
-     * @param clazz
-     * @param       <T>
-     * @return
-     */
-    public static <T> T getBean(String name, Class<T> clazz) {
-        return getApplicationContext().getBean(name, clazz);
+    private static void assertContextInjected() {
+        Validate.validState(applicationContext != null, "applicaitonContext属性未注入");
     }
 
 }
