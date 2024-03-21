@@ -23,12 +23,13 @@ public class CommonTest extends DemoApplicationTests {
     private static Integer i = 1;
 
     public static void main(String[] args) throws Exception {
-        int[] array = new int[3];
-        for (int i = 0; i < array.length; i++) {
-            System.out.println(array[i]);
-        }
+        System.out.println(~30);
+        System.out.println(reverse(30));
     }
 
+    public static Integer reverse(int num) {
+        return ~(num - 1);
+    }
 
     @Test
     public void test() {
@@ -67,8 +68,8 @@ public class CommonTest extends DemoApplicationTests {
         //判断是否包含非法字符
         for (String keyword : keywords) {
             if (str.indexOf(keyword) != -1) {
-                 int i=str.split(keyword).length-1;
-                 int j=str.split(StringUtils.join("`",keyword,"`")).length-1;
+                int i = str.split(keyword).length - 1;
+                int j = str.split(StringUtils.join("`", keyword, "`")).length - 1;
 
                 throw new RuntimeException("包含非法字符");
             }
@@ -82,13 +83,13 @@ public class CommonTest extends DemoApplicationTests {
     }
 
     @Test
-    public void test5(){
+    public void test5() {
         int i = new Father().hashCode();
         System.out.println(i);
     }
 
     @Test
-    public void test6(){
+    public void test6() {
         List<String> list = new ArrayList<>();
         list.add("hello");
         list.add("hello");
@@ -96,26 +97,33 @@ public class CommonTest extends DemoApplicationTests {
     }
 
     @Test
-    public void test7(){
+    public void test7() {
         Map<String, Object> resultMap = new HashMap<>();
-        resultMap.put("xixi",new Father(true));
-        resultMap.put("HEHE",null);
+        resultMap.put("xixi", new Father(true));
+        resultMap.put("HEHE", null);
 
         Map<String, Object> map = new HashMap<>();
-        map.put("hello","hello");
-        map.put("hehe",resultMap);
+        map.put("hello", "hello");
+        map.put("hehe", resultMap);
 
 
-        Map<String, Object> o = (Map<String, Object>)map.get("hehe");
-        Father xixi = (Father)o.get("HEHE");
+        Map<String, Object> o = (Map<String, Object>) map.get("hehe");
+        Father xixi = (Father) o.get("HEHE");
         System.out.println(JSON.toJSONString(xixi));
 
         new Thread(() -> {
 
         }).start();
 
-        new Thread(){
+        new Thread() {
 
         };
+    }
+
+    @Test
+    public void test8() {
+        Map<String, String> map = new HashMap<>();
+        map.put("","");
+
     }
 }
