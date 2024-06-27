@@ -38,11 +38,45 @@ public class CommonTest extends DemoApplicationTests {
         return ~(num - 1);
     }
 
+
+    public static void main(String[] args) {
+        // 1的补码为:0000 0000 0000 0000 0000 0000 0000 0001
+        //-1的原码为:1000 0000 0000 0000 0000 0000 0000 0001
+        //-1的反码为:1111 1111 1111 1111 1111 1111 1111 1110
+        //-1的补码为:1111 1111 1111 1111 1111 1111 1111 1111
+        System.out.println(Math.pow(2, 0));
+        //4的二进制0000 0100
+        System.out.println(Math.pow(2, 2));
+        //8的二进制0000 1000
+        System.out.println(Math.pow(2, 3));
+        //16的二进制0001 0000
+        System.out.println(Math.pow(2, 4));
+
+        int number = -1;
+        String binaryString = Integer.toBinaryString(number);
+        System.out.println(binaryString);
+
+    }
+
+
+    @Test
+    public void test41() {
+
+        String str = "hello";
+        int hash = this.hash(str);
+        System.out.println(hash);
+    }
+
+    public int hash(Object key) {
+        int h;
+        return (key == null) ? 0 : (h = key.hashCode()) ^ (h >>> 16);
+    }
+
+
     @Test
     public void test1() {
         String join = StringUtils.join(1, 2);
         System.out.println(join);
-        System.out.println(new String().equals(""));
     }
 
 
@@ -112,7 +146,7 @@ public class CommonTest extends DemoApplicationTests {
     }
 
     @Test
-    public void test5() {
+    public void testList() {
         List<String> list = new ArrayList<>();
         list.add("hello");
         list.add("hello");
@@ -121,13 +155,11 @@ public class CommonTest extends DemoApplicationTests {
 
 
     @Test
-    public void test6() throws Exception {
+    public void testMap() throws Exception {
         Map<String, String> map = new HashMap<>();
-        map.put("", "");
-        String dateStr = "2024-05-07 00:00:00";
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        Date parse = simpleDateFormat.parse(dateStr);
-        System.out.println(parse);
+        map.put("hello", "hello");
+        map.put("hello", "hello");
+        System.out.println(JSON.toJSONString(map));
     }
 
     @Test
@@ -146,15 +178,13 @@ public class CommonTest extends DemoApplicationTests {
 
         Integer WEEK_OF_MONTH = calendar.get(Calendar.WEEK_OF_MONTH);
 
-        Integer DATE = calendar.get(Calendar.DATE);
-
         Integer DAY_OF_MONTH = calendar.get(Calendar.DAY_OF_MONTH);
 
-        System.out.println("YEAR:" + YEAR);
+        Integer DAY_OF_YEAR = calendar.get(Calendar.DAY_OF_YEAR);
 
-        System.out.println("MONTH:" + MONTH);
+        Integer DATE = calendar.get(Calendar.DATE);
 
-        System.out.println("WEEK_OF_YEAR:" + WEEK_OF_YEAR);
+        System.out.println(String.format("年:%s,月:%s,日:%s,当年第几周:%s,当月第几周:%s,当月第几天:%s,当年第几天:%s;", YEAR, MONTH, DATE, WEEK_OF_YEAR, WEEK_OF_MONTH, DAY_OF_MONTH, DAY_OF_YEAR));
     }
 
     @Test
