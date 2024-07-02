@@ -15,9 +15,14 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Hashtable;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Stack;
+import java.util.TreeMap;
 import java.util.UUID;
+import java.util.Vector;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -151,6 +156,19 @@ public class CommonTest extends DemoApplicationTests {
         list.add("hello");
         list.add("hello");
         System.out.println(JSON.toJSONString(list));
+
+        LinkedList<String> linkedList = new LinkedList<>();
+        linkedList.add("xixi");
+        linkedList.add("xixi");
+        System.out.println(JSON.toJSONString(linkedList));
+
+        Stack<String> stack = new Stack<>();
+        stack.add("哈哈哈");
+        stack.add("哈哈哈");
+        System.out.println(JSON.toJSONString(stack));
+
+        Vector vector = new Vector();
+
     }
 
 
@@ -160,6 +178,17 @@ public class CommonTest extends DemoApplicationTests {
         map.put("hello", "hello");
         map.put("hello", "hello");
         System.out.println(JSON.toJSONString(map));
+
+        Hashtable<String, String> table = new Hashtable<>();
+        table.put("hello", "hello");
+        table.put("hello", "hello");
+        System.out.println(JSON.toJSONString(table));
+
+        TreeMap<String, String> treeMap = new TreeMap<>();
+        treeMap.put("hello", "hello");
+        treeMap.put("hello", "hello");
+        System.out.println(JSON.toJSONString(treeMap));
+
     }
 
     @Test
