@@ -34,7 +34,6 @@ import java.util.regex.Pattern;
  */
 public class CommonTest extends DemoApplicationTests {
 
-    private static Integer i = 1;
 
     private static SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
@@ -63,14 +62,13 @@ public class CommonTest extends DemoApplicationTests {
 
     }
 
-
     @Test
     public void test41() {
-
         String str = "hello";
         int hash = this.hash(str);
         System.out.println(hash);
     }
+
 
     public int hash(Object key) {
         int h;
@@ -103,6 +101,11 @@ public class CommonTest extends DemoApplicationTests {
         boolean b = matcher.find();
 
         System.out.println(b);
+    }
+
+    @Test
+    public void test5() throws Exception {
+        stopWatchTest();
     }
 
 
@@ -226,8 +229,6 @@ public class CommonTest extends DemoApplicationTests {
         BigDecimal b = new BigDecimal("3.00");
         BigDecimal result = a.divide(b, 2, RoundingMode.HALF_UP);
         System.out.println(result);
-
-
     }
 
     @Test
@@ -273,7 +274,6 @@ public class CommonTest extends DemoApplicationTests {
         endCalendar.setTime(startTime);
         endCalendar.set(Calendar.DAY_OF_MONTH, endCalendar.getActualMaximum(Calendar.DAY_OF_MONTH));
         this.getEndingOfCalendar(endCalendar);
-
 
         recursion(startCalendar, endCalendar, maxCalendar);
     }
@@ -322,7 +322,6 @@ public class CommonTest extends DemoApplicationTests {
         calendar.set(Calendar.MILLISECOND, 000);
         return calendar;
     }
-
 
     /**
      * @description: 获取一天开始
