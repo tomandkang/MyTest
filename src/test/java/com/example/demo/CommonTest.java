@@ -15,16 +15,19 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.Stack;
 import java.util.TreeMap;
 import java.util.UUID;
 import java.util.Vector;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 /**
  * @Author: chenkangwen
@@ -59,7 +62,6 @@ public class CommonTest extends DemoApplicationTests {
         int number = -1;
         String binaryString = Integer.toBinaryString(number);
         System.out.println(binaryString);
-
     }
 
     @Test
@@ -163,6 +165,8 @@ public class CommonTest extends DemoApplicationTests {
         LinkedList<String> linkedList = new LinkedList<>();
         linkedList.add("xixi");
         linkedList.add("xixi");
+        linkedList.addFirst("buxixi");
+        linkedList.addLast("yaoxixi");
         System.out.println(JSON.toJSONString(linkedList));
 
         Stack<String> stack = new Stack<>();
@@ -171,6 +175,15 @@ public class CommonTest extends DemoApplicationTests {
         System.out.println(JSON.toJSONString(stack));
 
         Vector vector = new Vector();
+
+        List<Integer> numList = new ArrayList<>();
+        numList.add(202410);
+        numList.add(202412);
+        numList.add(201309);
+        numList.add(202408);
+        numList.add(202409);
+        numList = numList.stream().sorted().collect(Collectors.toList());
+        System.out.println(JSON.toJSONString(numList));
 
     }
 
@@ -336,5 +349,24 @@ public class CommonTest extends DemoApplicationTests {
         calendar.set(Calendar.MILLISECOND, 000);
         return calendar;
     }
+
+    @Test
+    public void test9527() {
+
+        Set<Long> idSet = new HashSet<>();
+
+        System.out.println(idSet.add(1L));
+
+        System.out.println(idSet.add(1L));
+
+
+        Double dbl = 99999999.99d;
+        BigDecimal bigDecimal = new BigDecimal(dbl.toString());
+
+        System.out.println(Runtime.getRuntime().availableProcessors());
+        System.out.println(dbl);
+        System.out.println(bigDecimal);
+    }
+
 
 }
