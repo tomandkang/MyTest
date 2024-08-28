@@ -176,13 +176,16 @@ public class CommonTest extends DemoApplicationTests {
 
         Vector vector = new Vector();
 
-        List<Integer> numList = new ArrayList<>();
-        numList.add(202410);
-        numList.add(202412);
-        numList.add(201309);
-        numList.add(202408);
-        numList.add(202409);
-        numList = numList.stream().sorted().collect(Collectors.toList());
+        
+        Map<Integer, Integer> hashMap = new HashMap<>();
+        hashMap.put(201310,201310);
+        hashMap.put(202410,202410);
+        hashMap.put(202412,202412);
+        hashMap.put(201309,201309);
+        hashMap.put(202408,202408);
+        hashMap.put(202409,202409);
+        hashMap.put(202411,202411);
+        List<Integer> numList = hashMap.keySet().stream().sorted().collect(Collectors.toList());
         System.out.println(JSON.toJSONString(numList));
 
     }
