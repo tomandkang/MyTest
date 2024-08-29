@@ -1,13 +1,17 @@
 package com.example.demo;
 
 import com.alibaba.fastjson.JSON;
+import com.example.demo.commom.sorts.HeadSortCkw;
 import com.example.demo.entity.Father;
 import com.example.demo.entity.UserDTO;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,8 +27,16 @@ public class CommonTest extends DemoApplicationTests {
     private static Integer i = 1;
 
     public static void main(String[] args) throws Exception {
-        System.out.println(~30);
-        System.out.println(reverse(30));
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss:SSS");
+
+
+        Calendar instance = Calendar.getInstance();
+        instance.setTime(new Date());
+        instance.add(Calendar.DAY_OF_MONTH, 49);
+
+
+        System.out.println(sdf.format(instance.getTime()));
+
     }
 
     public static Integer reverse(int num) {
@@ -123,7 +135,19 @@ public class CommonTest extends DemoApplicationTests {
     @Test
     public void test8() {
         Map<String, String> map = new HashMap<>();
-        map.put("","");
+        map.put("", "");
+
+    }
+
+    @Test
+    public void test9() {
+        int[] index = new int[]{45, 68, 25, 1, 34, 16, 7, 128, 98, 59, 4};
+
+
+        HeadSortCkw sortCkw = new HeadSortCkw();
+        sortCkw.heapSort(index);
+
+        System.out.println(JSON.toJSONString(index));
 
     }
 }
