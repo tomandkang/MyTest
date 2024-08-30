@@ -6,8 +6,20 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Pointcut;
 
+import java.util.Date;
+
 @Slf4j
 public class MyAnnotionAop {
+
+   private Date parse;
+
+    public Date getParse() {
+        return parse;
+    }
+
+    public void setParse(Date parse) {
+        this.parse = parse;
+    }
 
     @Pointcut("@annotation(com.example.demo.commom.annotation.MyAnnotation)")
     private void pointcut(){
