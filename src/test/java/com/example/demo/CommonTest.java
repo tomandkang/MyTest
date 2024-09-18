@@ -4,20 +4,17 @@ import com.alibaba.fastjson.JSON;
 import com.example.demo.commom.aspect.MyAnnotionAop;
 import com.example.demo.commom.sorts.HeadSortCkw;
 import com.example.demo.entity.Father;
-import com.example.demo.entity.UserDTO;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
@@ -31,8 +28,8 @@ public class CommonTest extends DemoApplicationTests {
     private static Integer i = 1;
 
     public static void main(String[] args) throws Exception {
-      List<MyAnnotionAop> objects = new ArrayList<>();
-      List<Date> collect = objects.stream().map(x->x.getParse()).collect(Collectors.toList());
+        List<MyAnnotionAop> objects = new ArrayList<>();
+        List<Date> collect = objects.stream().map(x -> x.getParse()).collect(Collectors.toList());
     }
 
     public static Integer reverse(int num) {
@@ -76,9 +73,7 @@ public class CommonTest extends DemoApplicationTests {
         dates.add(myAnnotionAop3);
 
 
-
-
-        List<MyAnnotionAop> collect = dates.stream().sorted(Comparator.comparing(MyAnnotionAop::getParse,Comparator.nullsLast(Comparator.reverseOrder()))).collect(Collectors.toList());
+        List<MyAnnotionAop> collect = dates.stream().sorted(Comparator.comparing(MyAnnotionAop::getParse, Comparator.nullsLast(Comparator.reverseOrder()))).collect(Collectors.toList());
         System.out.println(JSON.toJSONString(collect));
 
     }
