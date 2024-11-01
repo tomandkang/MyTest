@@ -25,7 +25,7 @@
 
     <properties>
         <java.version>1.8</java.version>
-        <es-spring-boot.version>2.3.0.RELEASE</es-spring-boot.version>
+        <spring-boot.version>2.3.0.RELEASE</spring-boot.version>
         <es-spring.version>5.2.6.RELEASE</es-spring.version>
         <es-spring-data-commons.version>2.3.0.RELEASE</es-spring-data-commons.version>
         <es-spring-data-elasticsearch.version>4.0.0.RELEASE</es-spring-data-elasticsearch.version>
@@ -35,19 +35,6 @@
 
     <dependencyManagement>
         <dependencies>
-
-            <!--springmvc-->
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-web</artifactId>
-            </dependency>
-
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-aop</artifactId>
-            </dependency>
-
-            <!-- Redis客户端 -->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-data-elasticsearch</artifactId>
@@ -59,28 +46,11 @@
                 <artifactId>spring-data-commons</artifactId>
                 <version>${es-spring-data-commons.version}</version>
             </dependency>
+
             <dependency>
                 <groupId>org.springframework.data</groupId>
                 <artifactId>spring-data-elasticsearch</artifactId>
                 <version>${es-spring-data-elasticsearch.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-test</artifactId>
-                <scope>test</scope>
-                <exclusions>
-                    <exclusion>
-                        <groupId>org.junit.vintage</groupId>
-                        <artifactId>junit-vintage-engine</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-
-            <dependency>
-                <groupId>junit</groupId>
-                <artifactId>junit</artifactId>
-                <scope>test</scope>
             </dependency>
 
             <dependency>
@@ -114,53 +84,11 @@
                 <version>2.0.23</version>
             </dependency>
 
-
             <dependency>
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
                 <version>30.1-jre</version>
             </dependency>
-
-            <dependency>
-                <groupId>com.example</groupId>
-                <artifactId>test-api</artifactId>
-            </dependency>
-
-            <dependency>
-                <groupId>com.example</groupId>
-                <artifactId>test-api</artifactId>
-            </dependency>
-
         </dependencies>
     </dependencyManagement>
-
-    <build>
-        <!-- 如果不添加此节点mybatis的mapper.xml文件都会被漏掉。 -->
-        <resources>
-            <resource>
-                <directory>src/main/java</directory>
-                <includes>
-                    <include>**/*.properties</include>
-                    <include>**/*.xml</include>
-                </includes>
-                <filtering>false</filtering>
-            </resource>
-            <resource>
-                <directory>src/main/resources</directory>
-                <includes>
-                    <include>**/*.properties</include>
-                    <include>**/*.xml</include>
-                </includes>
-                <filtering>false</filtering>
-            </resource>
-        </resources>
-
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
-
 </project>

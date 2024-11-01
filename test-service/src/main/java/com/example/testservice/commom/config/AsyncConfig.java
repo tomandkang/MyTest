@@ -10,7 +10,6 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.ThreadPoolExecutor;
 
 @Configuration
-@EnableAsync
 public class AsyncConfig {
 
     @Value("${async.executor.thread.core_pool_size}")

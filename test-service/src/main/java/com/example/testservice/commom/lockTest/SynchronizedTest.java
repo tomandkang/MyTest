@@ -38,7 +38,7 @@ public class SynchronizedTest implements Runnable {
         t4.start();
         t5.start();
         countDownLatch.await();
-        System.out.println(synchronizedTest.num);
+        System.out.println(num);
     }
 
 
