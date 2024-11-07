@@ -2,8 +2,15 @@ package com.example.testservice;
 
 import com.example.testapi.dto.BaseEntityDTO;
 import com.example.testapi.dto.UserDTO;
+import com.example.testapi.es.TestUserEs;
+import com.example.testservice.boot.TestServiceApplication;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.elasticsearch.core.ElasticsearchRestTemplate;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -17,7 +24,9 @@ import java.util.Objects;
  * @Description:
  * @Version: 1.0
  */
-@SpringBootTest
+@RunWith(SpringRunner.class)
+@SpringBootTest(classes = TestServiceApplication.class)
+@EnableAutoConfiguration
 public class CommonTest {
 
     private static Integer i = 1;
@@ -27,6 +36,9 @@ public class CommonTest {
     public static Integer reverse(int num) {
         return ~(num - 1);
     }
+
+    @Autowired
+    private ElasticsearchRestTemplate elasticsearchRestTemplate;
 
     public static void main(String[] args) {
         if (Objects.nonNull(args)) {
@@ -46,7 +58,24 @@ public class CommonTest {
 
     @Test
     public void test_1() {
-        List<? extends BaseEntityDTO> list= new ArrayList<>();
-        List<? super BaseEntityDTO> baseEntityDTOS= new ArrayList<>();
+        List<? extends BaseEntityDTO> list = new ArrayList<>();
+        List<? super BaseEntityDTO> baseEntityDTOS = new ArrayList<>();
     }
+
+    /**
+     * @description: es
+     * @author: chenkangwen
+     * @date: 2024/11/7
+     * @param: []
+     */
+    @Test
+    public void test_2() {
+        TestUserEs testUserEs = new TestUserEs();
+        testUserEs.setId(20L);
+        testUserEs.setName("xixihaha");
+        testUserEs.setAge(30);
+        testUserEs = elasticsearchRestTemplate.save(testUserEs);
+
+    }
+
 }

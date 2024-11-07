@@ -11,11 +11,7 @@ import org.springframework.data.elasticsearch.config.AbstractElasticsearchConfig
 import org.springframework.data.elasticsearch.core.ElasticsearchRestTemplate;
 import org.springframework.data.elasticsearch.core.convert.ElasticsearchConverter;
 
-/**
- *
- * @author lghuntfor
- * @date 2020/6/11
- */
+
 @Configuration
 public class RestClientConfig extends AbstractElasticsearchConfiguration {
 
