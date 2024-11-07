@@ -3,6 +3,7 @@ package com.example.testcommon.commom.mode.proxyMode.staticProxy;
 public class ExpressCompanyProxy implements SuperMarketAction {
 
     private SuperMarket superMarket;
+
     public ExpressCompanyProxy(SuperMarket superMarket) {
         this.superMarket = superMarket;
     }

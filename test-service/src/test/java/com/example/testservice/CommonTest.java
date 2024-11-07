@@ -1,9 +1,16 @@
 package com.example.testservice;
 
+import com.alibaba.fastjson.JSON;
 import com.example.testapi.dto.BaseEntityDTO;
 import com.example.testapi.dto.UserDTO;
 import com.example.testapi.es.TestUserEs;
+import com.example.testcommon.commom.algorithm.sorts.BubbleSort;
+import com.example.testcommon.commom.algorithm.sorts.HeapSort;
+import com.example.testcommon.commom.algorithm.sorts.QuickSort;
+import com.example.testcommon.commom.algorithm.sorts.TopKSort;
+import com.example.testcommon.entity.Constant;
 import com.example.testservice.boot.TestServiceApplication;
+import com.example.testservice.utils.DateUtils;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,11 +20,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.elasticsearch.core.ElasticsearchRestTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @Author: chenkangwen
@@ -30,13 +38,12 @@ import java.util.Objects;
 @EnableAutoConfiguration
 public class CommonTest {
 
-    private static Integer i = 1;
-
     private static final UserDTO userDTO = new UserDTO();
 
-    public static Integer reverse(int num) {
-        return ~(num - 1);
-    }
+    private static final String REGEXP = "runoob";
+
+    private static final int[] arr = new int[]{19, 80, 95, 24, 78, 98, 10, 70, 100, 30};
+
 
     @Autowired
     private ElasticsearchRestTemplate elasticsearchRestTemplate;
@@ -44,19 +51,26 @@ public class CommonTest {
     private RestHighLevelClient restHighLevelClient;
 
     public static void main(String[] args) {
+        // 取反
+        System.err.println(~Constant.NUMBER_STATUS_ZERO);
+        // 取反
+        System.err.println(~Constant.NUMBER_STATUS_TEN);
+
         if (Objects.nonNull(args)) {
             for (int i = 0; i < args.length; i++) {
-                System.out.println(args[i]);
+                System.err.println(args[i]);
             }
         }
+        userDTO.setUserName("测试");
+        userDTO.setAge(18);
+        System.out.println(JSON.toJSONString(userDTO));
+
     }
 
     @Test
-    public void test() throws Exception {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Date parse = sdf.parse("2024-08-29 19:34:41");
-        Date parse1 = sdf.parse("2024-07-29 19:34:41");
-        Date parse2 = sdf.parse("2024-06-29 19:34:41");
+    public void test() {
+        Date now = DateUtils.parseDate("2024-07-29 19:34:41");
+        System.out.println(now);
     }
 
     @Test
@@ -81,4 +95,50 @@ public class CommonTest {
 
     }
 
+
+    @Test
+    public void test_3() {
+        String str = "Google runoob taobao runoob";
+        Pattern pattern = Pattern.compile(REGEXP);
+        Matcher matcher = pattern.matcher(str);
+
+        String s = matcher.replaceAll("nonono");
+
+
+        System.out.println(matcher.find());
+        System.out.println(s);
+    }
+
+
+    @Test
+    public void test_4() {
+        BubbleSort.bubbleSort(arr);
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(arr[i] + "----");
+        }
+    }
+
+
+    @Test
+    public void test_5() {
+        HeapSort.heapSort(arr);
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(arr[i] + "----");
+        }
+    }
+
+
+    @Test
+    public void test_6() {
+        QuickSort.quickSort(arr, 0, arr.length - 1);
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(arr[i] + "----");
+        }
+    }
+
+
+    @Test
+    public void test_7() {
+        TopKSort.topKSort();
+    }
 }

@@ -2,62 +2,65 @@ package com.example.testcommon.commom.algorithm.sorts;
 
 public class HeapSort {
 
+
     /**
-     * 二叉树要点
-     * 大顶堆:arr[i] >= arr[2i+1] && arr[i] >= arr[2i+2]
-     * 小顶堆:arr[i] <= arr[2i+1] && arr[i] <= arr[2i+2]
-     * 最大左节点:array.length/2-1
-     * 最大右节点:array.length/2-2
+     * @description: 堆排序算法
+     * @author: chenkangwen
+     * @date: 2024/11/27
+     * @param: [array]
      */
     public static void heapSort(int[] array) {
-        //从倒数第一个非叶子节点开始
+
         for (int i = array.length / 2 - 1; i >= 0; i--) {
-            //从第一天非叶子节点从下至上，从左至右调整结构
+
             adjustHeap(array, i, array.length);
         }
-
-        //将堆顶元素与末尾元素交换 将最大元素沉到数组末尾 + 重新调整堆结构
         for (int i = array.length - 1; i > 0; i--) {
-            //交换堆顶元素和末尾元素
+
             swap(array, 0, i);
-            //交换后的末尾元素忽略(j--) 不再参与堆结构的调整
-            //重新调整堆结构
+
             adjustHeap(array, 0, i);
         }
 
     }
 
-    private static void swap(int[] array, int start, int end) {
-        int temp = array[start];
-        array[start] = array[end];
-        array[end] = temp;
-    }
+    /**
+     * @description: 调整堆顶
+     * @author: chenkangwen
+     * @date: 2024/11/26
+     * @param: [array, index, length]
+     */
+    public static void adjustHeap(int[] array, int i, int length) {
 
-    public static void adjustHeap(int[] array, int index, int length) {
-        //取出当前元素
-        int temp = array[index];
-        //i节点是index节点的左子节点
-        for (int i = 2 * index + 1; i < length; i = 2 * i + 1) {
-            //表明左子节点小于右子节点
-            if (i + 1 < length && array[i] < array[i + 1]) {
-                //将指针移至较大节点
-                i++;
+        int temp = array[i];
+
+        for (int k = 2 * i + 1; k < length; k = 2 * k + 1) {
+
+            if (k + 1 < length && array[k] < array[k + 1]) {
+
+                k++;
             }
+            if (array[k] <= temp) {
 
-            //如果子节点大于父节点
-            if (array[i] > temp) {
-                //将较大值赋给当前节点
-                array[index] = array[i];
-                //指针移向子节点
-                index = i;
-            } else {
                 break;
             }
-        }
-        //循环结束，已经将最大值放在了堆顶
-        //将temp值放到最终的位置
-        array[index] = temp;
+            array[i] = array[k];
 
+            i = k;
+        }
+
+        array[i] = temp;
     }
 
+    /**
+     * @description: 交换下标a, b的值;
+     * @author: chenkangwen
+     * @date: 2024/11/26
+     * @param: [nums, a, b]
+     */
+    private static void swap(int[] nums, int start, int end) {
+        int temp = nums[end];
+        nums[end] = nums[start];
+        nums[start] = temp;
+    }
 }
