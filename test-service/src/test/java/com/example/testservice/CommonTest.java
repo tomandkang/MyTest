@@ -44,6 +44,8 @@ public class CommonTest {
     private RestHighLevelClient restHighLevelClient;
 
     public static void main(String[] args) {
+        UserDTO userDTO = new UserDTO();
+
 
         Integer reverse = reverse(50);
         System.out.println(reverse);

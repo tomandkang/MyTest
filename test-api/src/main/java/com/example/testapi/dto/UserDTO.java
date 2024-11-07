@@ -19,10 +19,18 @@ public class UserDTO extends BaseEntityDTO {
 
     private Byte sex;
 
+    private Integer age;
+
     private String phone;
 
     private Integer delFlag;
 
+    public UserDTO() {
 
+    }
 
+    public UserDTO(String userName, Integer age) {
+        this.userName = userName;
+        this.age = age;
+    }
 }

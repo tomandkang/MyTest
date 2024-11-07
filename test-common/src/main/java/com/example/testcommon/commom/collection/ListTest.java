@@ -1,6 +1,13 @@
 package com.example.testcommon.commom.collection;
 
+import com.alibaba.fastjson.JSON;
+import com.example.testapi.dto.UserDTO;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Vector;
 
 public class ListTest {
@@ -13,7 +20,7 @@ public class ListTest {
         vector.add("hello");
     }
 
-/*    public static void test() {
+   public static void listSort() {
         List<UserDTO> list = new ArrayList<>();
         list.add(new UserDTO("西施", 18));
         list.add(new UserDTO("王昭君", 16));
@@ -35,6 +42,6 @@ public class ListTest {
             }
         });
         System.err.println(JSON.toJSONString(list));
-    }*/
+    }
 
 }
