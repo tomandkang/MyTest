@@ -90,6 +90,14 @@
             <scope>test</scope>
         </dependency>
 
+
+        <dependency>
+            <groupId>com.example</groupId>
+            <artifactId>test-common</artifactId>
+            <version>v1.0.0</version>
+            <scope>test</scope>
+        </dependency>
+
     </dependencies>
 
 </project>
