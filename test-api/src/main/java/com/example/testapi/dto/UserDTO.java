@@ -9,7 +9,7 @@ import lombok.Data;
  * @Version: 1.0
  */
 @Data
-public class UserDTO {
+public class UserDTO extends BaseEntityDTO {
 
     private Long id;
 

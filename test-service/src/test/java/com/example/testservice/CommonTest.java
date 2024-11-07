@@ -1,9 +1,15 @@
 package com.example.testservice;
 
+import com.example.testapi.dto.BaseEntityDTO;
+import com.example.testapi.dto.UserDTO;
 import org.junit.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.Objects;
 
 /**
  * @Author: chenkangwen
@@ -11,12 +17,23 @@ import java.util.Date;
  * @Description:
  * @Version: 1.0
  */
-public class CommonTest extends TestServiceApplicationTests {
+@SpringBootTest
+public class CommonTest {
 
     private static Integer i = 1;
 
+    private static final UserDTO userDTO = new UserDTO();
+
     public static Integer reverse(int num) {
         return ~(num - 1);
+    }
+
+    public static void main(String[] args) {
+        if (Objects.nonNull(args)) {
+            for (int i = 0; i < args.length; i++) {
+                System.out.println(args[i]);
+            }
+        }
     }
 
     @Test
@@ -27,4 +44,9 @@ public class CommonTest extends TestServiceApplicationTests {
         Date parse2 = sdf.parse("2024-06-29 19:34:41");
     }
 
+    @Test
+    public void test_1() {
+        List<? extends BaseEntityDTO> list= new ArrayList<>();
+        List<? super BaseEntityDTO> baseEntityDTOS= new ArrayList<>();
+    }
 }
