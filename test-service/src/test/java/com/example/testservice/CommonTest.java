@@ -4,6 +4,7 @@ import com.example.testapi.dto.BaseEntityDTO;
 import com.example.testapi.dto.UserDTO;
 import com.example.testapi.es.TestUserEs;
 import com.example.testservice.boot.TestServiceApplication;
+import org.elasticsearch.client.RestHighLevelClient;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +40,8 @@ public class CommonTest {
 
     @Autowired
     private ElasticsearchRestTemplate elasticsearchRestTemplate;
+    @Autowired
+    private RestHighLevelClient restHighLevelClient;
 
     public static void main(String[] args) {
         if (Objects.nonNull(args)) {

@@ -20,6 +20,7 @@
     <modules>
         <module>test-api</module>
         <module>test-service</module>
+        <module>test-common</module>
     </modules>
 
 
