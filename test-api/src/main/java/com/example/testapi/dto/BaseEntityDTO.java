@@ -11,10 +11,10 @@ import java.util.Date;
 public class BaseEntityDTO implements Serializable {
 
 
-    private Integer currentPage = 1;
+    private Integer currentPage;
 
 
-    private Integer pageRows = 15;
+    private Integer pageRows;
 
 
     private Long operateUserId;
