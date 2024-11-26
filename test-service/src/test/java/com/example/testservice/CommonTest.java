@@ -4,6 +4,8 @@ import com.alibaba.fastjson.JSON;
 import com.example.testapi.dto.BaseEntityDTO;
 import com.example.testapi.dto.UserDTO;
 import com.example.testapi.es.TestUserEs;
+import com.example.testcommon.commom.algorithm.sorts.BubbleSort;
+import com.example.testcommon.commom.algorithm.sorts.HeapSort;
 import com.example.testcommon.entity.Constant;
 import com.example.testservice.boot.TestServiceApplication;
 import com.example.testservice.utils.DateUtils;
@@ -37,6 +39,9 @@ public class CommonTest {
     private static final UserDTO userDTO = new UserDTO();
 
     private static final String REGEXP = "runoob";
+
+    private static final int[] arr = new int[]{90, 80, 95, 24, 78, 98, 10, 70, 19, 30};
+
 
     @Autowired
     private ElasticsearchRestTemplate elasticsearchRestTemplate;
@@ -102,4 +107,21 @@ public class CommonTest {
         System.out.println(s);
     }
 
+
+    @Test
+    public void test_4() {
+        BubbleSort.bubbleSort(arr);
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(arr[i]+"----");
+        }
+    }
+
+
+    @Test
+    public void test_5() {
+        HeapSort.heapSort(arr);
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(arr[i]+"----");
+        }
+    }
 }
