@@ -5,25 +5,31 @@ public class HeapSort {
 
     public static void heapSort(int[] array) {
         for (int i = array.length / 2 - 1; i >= 0; i--) {
+
             adjustHeap(array, i, array.length);
         }
         for (int i = array.length - 1; i > 0; i--) {
+
             swap(array, 0, i);
+
             adjustHeap(array, 0, i);
         }
 
     }
 
     /**
-     * @description:
+     * @description: 调整堆顶
      * @author: chenkangwen
      * @date: 2024/11/26
      * @param: [array, index, length]
      */
     public static void adjustHeap(int[] array, int i, int length) {
         int temp = array[i];
+
         for (int k = 2 * i + 1; k < length; k = 2 * i + 1) {
+
             if (k + 1 < length && array[k] < array[k + 1]) {
+
                 k++;
             }
             if (array[k] <= temp) {
