@@ -6,6 +6,8 @@ import com.example.testapi.dto.UserDTO;
 import com.example.testapi.es.TestUserEs;
 import com.example.testcommon.commom.algorithm.sorts.BubbleSort;
 import com.example.testcommon.commom.algorithm.sorts.HeapSort;
+import com.example.testcommon.commom.algorithm.sorts.QuickSort;
+import com.example.testcommon.commom.algorithm.sorts.TopKSort;
 import com.example.testcommon.entity.Constant;
 import com.example.testservice.boot.TestServiceApplication;
 import com.example.testservice.utils.DateUtils;
@@ -40,7 +42,7 @@ public class CommonTest {
 
     private static final String REGEXP = "runoob";
 
-    private static final int[] arr = new int[]{90, 80, 95, 24, 78, 98, 10, 70, 19, 30};
+    private static final int[] arr = new int[]{19, 80, 95, 24, 78, 98, 10, 70, 100, 30};
 
 
     @Autowired
@@ -112,7 +114,7 @@ public class CommonTest {
     public void test_4() {
         BubbleSort.bubbleSort(arr);
         for (int i = 0; i < arr.length; i++) {
-            System.out.print(arr[i]+"----");
+            System.out.print(arr[i] + "----");
         }
     }
 
@@ -121,7 +123,22 @@ public class CommonTest {
     public void test_5() {
         HeapSort.heapSort(arr);
         for (int i = 0; i < arr.length; i++) {
-            System.out.print(arr[i]+"----");
+            System.out.print(arr[i] + "----");
         }
+    }
+
+
+    @Test
+    public void test_6() {
+        QuickSort.quickSort(arr, 0, arr.length - 1);
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(arr[i] + "----");
+        }
+    }
+
+
+    @Test
+    public void test_7() {
+        TopKSort.topKSort();
     }
 }
