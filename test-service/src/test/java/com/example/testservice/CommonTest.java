@@ -40,7 +40,7 @@ public class CommonTest {
 
     private static final String REGEXP = "runoob";
 
-    private static final int[] arr = new int[]{90, 80, 95, 24, 78, 98, 10, 70, 19, 30};
+    private static final int[] arr = new int[]{19, 80, 95, 24, 78, 98, 10, 70, 100, 30};
 
 
     @Autowired
