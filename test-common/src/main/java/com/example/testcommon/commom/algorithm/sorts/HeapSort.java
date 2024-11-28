@@ -36,11 +36,11 @@ public class HeapSort {
 
         for (int k = 2 * i + 1; k < length; k = 2 * k + 1) {
 
-            if (k + 1 < length && array[k] > array[k + 1]) {
+            if (k + 1 < length && array[k] < array[k + 1]) {
 
                 k++;
             }
-            if (array[k] >= temp) {
+            if (array[k] <= temp) {
 
                 break;
             }
