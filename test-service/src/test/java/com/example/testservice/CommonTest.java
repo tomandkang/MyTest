@@ -51,6 +51,8 @@ public class CommonTest {
     private RestHighLevelClient restHighLevelClient;
 
     public static void main(String[] args) {
+
+        System.out.println("https://img.cdn.zhaoshang800.com/".length());
         // 取反
         System.err.println(~Constant.NUMBER_STATUS_ZERO);
         // 取反
