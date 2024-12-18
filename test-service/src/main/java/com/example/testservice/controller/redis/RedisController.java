@@ -1,4 +1,4 @@
-package com.example.testservice.controller;
+package com.example.testservice.controller.redis;
 
 import com.example.testapi.dto.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;

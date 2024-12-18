@@ -5,34 +5,27 @@ import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
+import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
-
-import java.util.Date;
+import org.springframework.stereotype.Component;
 
 @Slf4j
+@Aspect
+@Component
 public class MyAnnotionAop {
 
-   private Date parse;
 
-    public Date getParse() {
-        return parse;
+    @Pointcut("@annotation(com.example.testservice.annotation.LogAnnotation)")
+    private void pointcut() {
     }
 
-    public void setParse(Date parse) {
-        this.parse = parse;
-    }
 
-    @Pointcut("@annotation(com.example.testservice.annotation.MyAnnotation)")
-    private void pointcut(){
-
-    }
-
-    @Around(value="pointcut()")
+    @Around(value = "pointcut()")
     public Object aroud(ProceedingJoinPoint joinPoint) throws Throwable {
         Object[] args = joinPoint.getArgs();
         Object result = joinPoint.proceed(args);
         log.info("请求参数：{}", JSON.toJSON(args));
-        log.info("返回结果：{}",JSON.toJSON(result));
+        log.info("返回结果：{}", JSON.toJSON(result));
         return result;
     }
 
