@@ -18,7 +18,7 @@ public class ConsistencyHash {
     // 真实节点列表
     private static List<String> realNodes = new LinkedList<String>();
     //模拟初始服务器
-    private static String[] servers = { "192.168.1.1", "192.168.1.2", "192.168.1.3", "192.168.1.5", "192.168.1.6" };
+    private static String[] servers = {"192.168.1.1", "192.168.1.2", "192.168.1.3", "192.168.1.5", "192.168.1.6"};
 
     static {
         for (String server : servers) {
@@ -87,6 +87,7 @@ public class ConsistencyHash {
             }
         }
     }
+
     /**
      * FNV1_32_HASH算法
      */
@@ -112,7 +113,7 @@ public class ConsistencyHash {
     public static void main(String[] args) {
 
         //模拟客户端的请求
-        String[] nodes = { "127.0.0.1", "10.9.3.253", "192.168.10.1" };
+        String[] nodes = {"127.0.0.1", "10.9.3.253", "192.168.10.1"};
 
         for (String node : nodes) {
             System.out.println("[" + node + "]的hash值为" + getHash(node) + ", 被路由到结点[" + getServer(node) + "]");

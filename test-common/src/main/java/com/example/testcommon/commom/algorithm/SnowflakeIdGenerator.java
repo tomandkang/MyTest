@@ -1,9 +1,12 @@
 package com.example.testcommon.commom.algorithm;
 
+import java.util.Random;
+
 public class SnowflakeIdGenerator {
 
     // ==============================字段==============================
 
+    private static Random random = new Random();
 
     // 机器ID
     private final long workerId;
@@ -33,6 +36,17 @@ public class SnowflakeIdGenerator {
 
     // ==============================构造函数==============================
 
+    private static SnowflakeIdGenerator instance = null;
+
+    static {
+        instance = new SnowflakeIdGenerator();
+    }
+
+    private SnowflakeIdGenerator() {
+        this(random.nextInt(31), random.nextInt(31));
+    }
+
+
     /**
      * 构造函数
      *
@@ -55,6 +69,11 @@ public class SnowflakeIdGenerator {
 
 
     // ==============================方法==============================
+
+
+    public static SnowflakeIdGenerator getInstance() {
+        return instance;
+    }
 
     /**
      * 生成唯一ID

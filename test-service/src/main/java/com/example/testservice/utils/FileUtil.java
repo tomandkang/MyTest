@@ -153,26 +153,26 @@ public class FileUtil {
     }
 
 
-    public static void test(File file){
+    public static void test(File file) {
         StringBuilder sb = new StringBuilder();
-        try(FileInputStream fi = new FileInputStream(file);) {
-            int len=0;
+        try (FileInputStream fi = new FileInputStream(file);) {
+            int len = 0;
             byte bytearr[] = new byte[1024];
-            while ((len = fi.read(bytearr))!=-1){
-                sb.append(new String(bytearr,0,len));
+            while ((len = fi.read(bytearr)) != -1) {
+                sb.append(new String(bytearr, 0, len));
             }
         } catch (Exception e) {
         }
-        System.out.println("读取的文件内容为："+sb.toString());	//将字节型数组转换为字符串
+        System.out.println("读取的文件内容为：" + sb.toString());    //将字节型数组转换为字符串
     }
 
-    public static void test1(File file)throws Exception{
+    public static void test1(File file) throws Exception {
         StringBuilder result = new StringBuilder();
-        String str= null;
-        try(FileReader fileReader = new FileReader(file);
-            BufferedReader br = new BufferedReader(fileReader);) {
+        String str = null;
+        try (FileReader fileReader = new FileReader(file);
+             BufferedReader br = new BufferedReader(fileReader);) {
             str = null;
-            while ((str=br.readLine())!=null){
+            while ((str = br.readLine()) != null) {
                 System.out.println(str);
                 result.append(str);
             }
@@ -181,12 +181,12 @@ public class FileUtil {
         }
     }
 
-    public static void readFile(String filePath){
+    public static void readFile(String filePath) {
         try (InputStream inputStream = new FileInputStream(new File(filePath));
              InputStreamReader reader = new InputStreamReader(inputStream);
              BufferedReader br = new BufferedReader(reader)) {
             String jsonStr;
-            while ((jsonStr=br.readLine())!=null){
+            while ((jsonStr = br.readLine()) != null) {
                 System.out.println(jsonStr);
             }
         } catch (Exception e) {
