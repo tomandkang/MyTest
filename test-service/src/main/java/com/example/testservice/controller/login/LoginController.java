@@ -1,6 +1,7 @@
 package com.example.testservice.controller.login;
 
 import com.example.testapi.dto.UserDTO;
+import com.example.testcommon.commom.algorithm.snowflake.SnowflakeIdGenerator;
 import com.example.testcommon.commom.eventListener.TwoEvent;
 import com.example.testcommon.entity.Result;
 import com.example.testservice.annotation.LogAnnotation;
@@ -24,9 +25,10 @@ import org.springframework.web.bind.annotation.RestController;
 public class LoginController extends BaseController {
 
     @LogAnnotation
-    @RequestMapping("/login/{id}")
-    public Result test(@PathVariable("id") Long id) {
-        log.info("请求参数：{}",id);
+    @RequestMapping("/login")
+    public Result login() {
+        long id = SnowflakeIdGenerator.getInstance().generateUniqueId();
+        log.info("请求参数：{}", id);
         Result<UserDTO> result = new Result<>();
         UserDTO userDTO = new UserDTO();
         userDTO.setId(id);
@@ -37,9 +39,8 @@ public class LoginController extends BaseController {
     }
 
 
-
     @RequestMapping(value = "/login/event", method = RequestMethod.POST)
-    public void event(){
+    public void event() {
         TwoEvent event1 = new TwoEvent();
         event1.setName("twoEvent");
         SpringContextUtils.getApplicationContext().publishEvent(event1);

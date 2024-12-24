@@ -1,4 +1,4 @@
-package com.example.testcommon.commom.algorithm;
+package com.example.testcommon.commom.algorithm.snowflake;
 
 import java.util.Random;
 
