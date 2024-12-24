@@ -1,12 +1,15 @@
 package com.example.testservice.controller.login;
 
 import com.example.testapi.dto.UserDTO;
+import com.example.testcommon.commom.eventListener.TwoEvent;
 import com.example.testcommon.entity.Result;
 import com.example.testservice.annotation.LogAnnotation;
 import com.example.testservice.controller.BaseController;
+import com.example.testservice.utils.SpringContextUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -33,4 +36,12 @@ public class LoginController extends BaseController {
         return result;
     }
 
+
+
+    @RequestMapping(value = "/login/event", method = RequestMethod.POST)
+    public void event(){
+        TwoEvent event1 = new TwoEvent();
+        event1.setName("twoEvent");
+        SpringContextUtils.getApplicationContext().publishEvent(event1);
+    }
 }
