@@ -1,13 +1,16 @@
 package com.example.testservice.controller.login;
 
 import com.example.testapi.dto.UserDTO;
+import com.example.testapi.vo.MpUserVO;
 import com.example.testcommon.commom.algorithm.snowflake.SnowflakeIdGenerator;
 import com.example.testcommon.commom.eventListener.TwoEvent;
 import com.example.testcommon.entity.Result;
 import com.example.testservice.annotation.LogAnnotation;
 import com.example.testservice.controller.BaseController;
+import com.example.testservice.service.UserService;
 import com.example.testservice.utils.SpringContextUtils;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -24,17 +27,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class LoginController extends BaseController {
 
+    @Autowired
+    private UserService userService;
+
     @LogAnnotation
-    @RequestMapping("/login")
-    public Result login() {
-        long id = SnowflakeIdGenerator.getInstance().generateUniqueId();
+    @RequestMapping("/login/{id}")
+    public Result login(@PathVariable("id") Long id) {
         log.info("请求参数：{}", id);
-        Result<UserDTO> result = new Result<>();
-        UserDTO userDTO = new UserDTO();
-        userDTO.setId(id);
-        userDTO.setUserCode("okk");
-        userDTO.setUserName("测试");
-        result.setData(userDTO);
+        Result<MpUserVO> result = new Result<>();
+        MpUserVO mpUserVO = userService.getVOById(id);
+        result.setData(mpUserVO);
         return result;
     }
 
